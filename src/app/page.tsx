@@ -8,22 +8,25 @@ import Skills from '@/app/components/sections/Skills';
 import Organization from '@/app/components/sections/Organization';
 import Volunteer from '@/app/components/sections/Volunteer';
 import Contact from '@/app/components/sections/Contact';
+import IntroExperience from '@/app/components/IntroExperience';
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-stone-50/30 text-stone-900 selection:bg-stone-200 selection:text-stone-900">
-      <main className="flex-1">
-        <Hero />
-        <ScatteredNav />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Organization />
-        <Volunteer />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <IntroExperience>
+      <div className="flex min-h-screen flex-col bg-stone-50/30 text-stone-900 selection:bg-stone-200 selection:text-stone-900">
+        <main className="flex-1">
+          <Hero />
+          <ScatteredNav />
+          <About />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Organization />
+          <Volunteer />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </IntroExperience>
   );
 }

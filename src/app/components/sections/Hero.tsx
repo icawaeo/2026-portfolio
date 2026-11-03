@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useContext, useEffect, useState, useSyncExternalStore } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'motion/react';
 import { Download, ArrowDown } from 'lucide-react';
@@ -8,6 +8,7 @@ import Container from '@/components/shared/Container';
 import Button from '@/app/components/ui/Button';
 import SocialLinks from '@/app/components/ui/SocialLinks';
 import ShapeGrid from '@/components/ui/ShapeGrid';
+import { IntroRevealContext } from '@/app/components/IntroExperience';
 import { personalInfo } from '@/data/personal';
 
 // Dynamically import LanyardBadge with SSR disabled to safely handle browser APIs
@@ -41,16 +42,15 @@ function BadgeFront({
     }
   };
 
-  // Teal Color Palette from reference photocard
-  const TEAL_PRIMARY = '#3E8E93';
-  const TEAL_DARK = '#265E62';
-  const BG_MINT = '#F0F5F4';
+  const BADGE_PRIMARY = '#1C1917';
+  const BADGE_ACCENT = '#F59E0B';
+  const BADGE_SURFACE = '#FAFAF9';
 
   return (
     <div
       className="relative flex h-full w-full flex-col justify-between overflow-hidden select-none"
       style={{
-        background: BG_MINT,
+        background: BADGE_SURFACE,
         color: '#FFFFFF',
         fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
       }}
@@ -60,7 +60,7 @@ function BadgeFront({
         className="relative w-full overflow-hidden"
         style={{
           height: '76%',
-          backgroundColor: BG_MINT,
+          backgroundColor: BADGE_SURFACE,
           borderTopLeftRadius: cardWidth * 0.06,
           borderTopRightRadius: cardWidth * 0.06,
         }}
@@ -92,7 +92,7 @@ function BadgeFront({
                 letterSpacing: '0.14em',
                 fontFamily: '"Impact", "Arial Black", "Oswald", sans-serif',
                 color: 'transparent',
-                WebkitTextStroke: '1.2px rgba(62, 142, 147, 0.28)',
+                WebkitTextStroke: '1.2px rgba(120, 113, 108, 0.28)',
                 textTransform: 'uppercase',
                 lineHeight: 1,
                 opacity: 0.9,
@@ -114,7 +114,7 @@ function BadgeFront({
             width: 170 * s,
             height: 170 * s,
             borderRadius: '50%',
-            border: '1.5px solid rgba(62, 142, 147, 0.22)',
+            border: '1.5px solid rgba(120, 113, 108, 0.22)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -127,7 +127,7 @@ function BadgeFront({
               width: 146 * s,
               height: 146 * s,
               borderRadius: '50%',
-              border: '1px dashed rgba(62, 142, 147, 0.24)',
+              border: '1px dashed rgba(120, 113, 108, 0.24)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -138,7 +138,7 @@ function BadgeFront({
                 width: 116 * s,
                 height: 116 * s,
                 borderRadius: '50%',
-                border: '1.5px solid rgba(62, 142, 147, 0.18)',
+                border: '1.5px solid rgba(120, 113, 108, 0.18)',
               }}
             />
           </div>
@@ -147,7 +147,7 @@ function BadgeFront({
             height={64 * s}
             viewBox="0 0 24 24"
             fill="none"
-            stroke="rgba(62, 142, 147, 0.24)"
+            stroke="rgba(120, 113, 108, 0.24)"
             strokeWidth="1.2"
             style={{ position: 'absolute' }}
           >
@@ -185,7 +185,7 @@ function BadgeFront({
                 objectFit: 'cover',
                 objectPosition: 'center 15%',
                 display: 'block',
-                filter: 'drop-shadow(0 4px 12px rgba(38, 94, 98, 0.18))',
+                filter: 'drop-shadow(0 4px 12px rgba(28, 25, 23, 0.18))',
               }}
             />
           ) : (
@@ -206,14 +206,14 @@ function BadgeFront({
                   width: 94 * s,
                   height: 94 * s,
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(62, 142, 147, 0.12)',
-                  border: '2px solid rgba(62, 142, 147, 0.4)',
+                  backgroundColor: 'rgba(245, 158, 11, 0.12)',
+                  border: '2px solid rgba(245, 158, 11, 0.4)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: TEAL_PRIMARY,
-                  boxShadow: '0 6px 18px rgba(38, 94, 98, 0.15)',
+                  color: BADGE_PRIMARY,
+                  boxShadow: '0 6px 18px rgba(28, 25, 23, 0.15)',
                 }}
               >
                 <svg
@@ -230,7 +230,7 @@ function BadgeFront({
                     fontSize: 7 * s,
                     fontWeight: 800,
                     letterSpacing: '0.14em',
-                    color: TEAL_PRIMARY,
+                    color: BADGE_PRIMARY,
                     marginTop: 2 * s,
                   }}
                 >
@@ -251,7 +251,7 @@ function BadgeFront({
             right: 0,
             height: 30 * s,
             background:
-              'linear-gradient(to bottom, rgba(38, 94, 98, 0.35) 0%, transparent 100%)',
+              'linear-gradient(to bottom, rgba(28, 25, 23, 0.35) 0%, transparent 100%)',
             zIndex: 4,
             pointerEvents: 'none',
           }}
@@ -263,7 +263,7 @@ function BadgeFront({
         style={{
           width: '100%',
           height: 6 * s,
-          backgroundColor: TEAL_DARK,
+          backgroundColor: BADGE_ACCENT,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -280,7 +280,7 @@ function BadgeFront({
         className="relative flex flex-col items-center justify-center w-full"
         style={{
           height: '24%',
-          backgroundColor: TEAL_PRIMARY,
+          backgroundColor: BADGE_PRIMARY,
           padding: (6 * s) + 'px ' + (10 * s) + 'px ' + (8 * s) + 'px',
           zIndex: 5,
         }}
@@ -308,8 +308,8 @@ function BadgeFront({
             marginTop: 5 * s,
             padding: `${2.5 * s}px ${8.5 * s}px`,
             borderRadius: 999,
-            backgroundColor: 'rgba(255, 255, 255, 0.18)',
-            border: '1px solid rgba(255, 255, 255, 0.35)',
+            backgroundColor: 'rgba(250, 250, 249, 0.12)',
+            border: '1px solid rgba(250, 250, 249, 0.28)',
             backdropFilter: 'blur(4px)',
             display: 'inline-flex',
             alignItems: 'center',
@@ -323,8 +323,8 @@ function BadgeFront({
               width: 3.5 * s,
               height: 3.5 * s,
               borderRadius: '50%',
-              backgroundColor: '#34D399',
-              boxShadow: '0 0 6px rgba(52, 211, 153, 0.8)',
+              backgroundColor: BADGE_ACCENT,
+              boxShadow: '0 0 6px rgba(245, 158, 11, 0.8)',
               flexShrink: 0,
             }}
           />
@@ -533,6 +533,20 @@ interface LanyardConfig {
   buckleY: number;
 }
 
+function subscribeToReducedMotion(callback: () => void) {
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  mediaQuery.addEventListener('change', callback);
+  return () => mediaQuery.removeEventListener('change', callback);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function getReducedMotionServerSnapshot() {
+  return false;
+}
+
 const DESKTOP_LANYARD_CONFIG: LanyardConfig = {
   cardWidth: 230,
   anchorX: 0.73,
@@ -577,15 +591,26 @@ function useLanyardConfig(): LanyardConfig {
 }
 
 export default function Hero() {
+  const introContext = useContext(IntroRevealContext);
+  const introComplete = introContext ?? true;
   const mounted = useIsMounted();
+  const reducedMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
   const { cardWidth, anchorX, buckleY } = useLanyardConfig();
-  const [typedName, setTypedName] = useState('');
+  const [typedDescription, setTypedDescription] = useState('');
   const heroName = personalInfo.name;
+  const heroDescription =
+    'I design intuitive digital experiences, analyze complex systems, and build functional web applications. Passionate about connecting creativity, technology, and problem-solving.';
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (!introComplete) return;
+
+    if (reducedMotion) {
       const completionFrame = window.requestAnimationFrame(() => {
-        setTypedName(heroName);
+        setTypedDescription(heroDescription);
       });
 
       return () => window.cancelAnimationFrame(completionFrame);
@@ -594,15 +619,15 @@ export default function Hero() {
     let characterIndex = 0;
     const typingInterval = window.setInterval(() => {
       characterIndex += 1;
-      setTypedName(heroName.slice(0, characterIndex));
+      setTypedDescription(heroDescription.slice(0, characterIndex));
 
-      if (characterIndex >= heroName.length) {
+      if (characterIndex >= heroDescription.length) {
         window.clearInterval(typingInterval);
       }
-    }, 65);
+    }, 16);
 
     return () => window.clearInterval(typingInterval);
-  }, [heroName]);
+  }, [heroDescription, introComplete, reducedMotion]);
 
   return (
     <section
@@ -655,9 +680,9 @@ export default function Hero() {
       {mounted && (
         <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
           <LanyardBadge
-            strapColor="#265E62"
-            inkColor="#D8EDE9"
-            cardColor="#F0F5F4"
+            strapColor="#1C1917"
+            inkColor="#FAFAF9"
+            cardColor="#FAFAF9"
             strapText="VERONICA WAEO"
             strapLabel="UI/UX & SYSTEM ANALYST"
             cardWidth={cardWidth}
@@ -685,8 +710,10 @@ export default function Hero() {
             {/* Availability indicator */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              animate={
+                introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+              }
+              transition={{ duration: reducedMotion ? 0 : 0.5 }}
               className="mb-6 inline-flex"
             >
               {/* <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3.5 py-1.5 text-xs font-semibold text-emerald-800 shadow-2xs backdrop-blur-xs">
@@ -701,32 +728,35 @@ export default function Hero() {
             {/* Introductory label */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-stone-400"
+              animate={
+                introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+              }
+              transition={{
+                duration: reducedMotion ? 0 : 0.5,
+                delay: reducedMotion ? 0 : 0.1,
+              }}
+              className="mb-2 text-lg font-semibold tracking-tight text-black sm:text-4xl"
             >
-              HELLO, I&apos;M
+              Hello, I&apos;m
             </motion.p>
 
             {/* Main heading */}
             <motion.h1
               aria-label={`${heroName}.`}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              animate={
+                introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ duration: reducedMotion ? 0 : 0.6 }}
               className="text-3xl font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-7xl"
             >
-              <span
+              <motion.span
+                layoutId="portfolio-veronica-name"
                 aria-hidden="true"
-                className="inline-flex whitespace-nowrap bg-violet-600 px-5 py-2 text-white shadow-[8px_8px_0_rgba(196,181,253,0.65)] ring-1 ring-white/70 sm:px-6 sm:py-2.5"
+                className="inline-flex whitespace-nowrap bg-yellow-500 px-5 py-2 text-white shadow-[8px_8px_0_rgba(234,179,8,0.35)] ring-1 ring-white/70 sm:px-6 sm:py-2.5"
               >
-                {typedName}
-                <span
-                  className={`ml-1 inline-block h-[0.8em] w-[0.07em] self-center rounded-sm bg-white ${
-                    typedName.length < heroName.length ? 'animate-pulse' : 'opacity-0'
-                  }`}
-                />
-              </span>
+                {heroName}
+              </motion.span>
             </motion.h1>
 
             {/* Professional subtitle */}
@@ -742,21 +772,37 @@ export default function Hero() {
             {/* Supporting text */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-4 max-w-xl text-base leading-relaxed text-stone-500 sm:text-lg"
+              animate={
+                introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{
+                duration: reducedMotion ? 0 : 0.5,
+                delay: reducedMotion ? 0 : 0.5,
+              }}
+              className="mt-15 min-h-[8.125em] max-w-xl text-base leading-relaxed text-black-500 sm:min-h-[5em] sm:text-lg"
+              aria-label={heroDescription}
             >
-              I design intuitive digital experiences, analyze complex
-              systems, and build functional web applications. Passionate
-              about connecting creativity, technology, and
-              problem-solving.
+              <span aria-hidden="true">{typedDescription}</span>
+              <span
+                aria-hidden="true"
+                className={`ml-0.5 inline-block h-[1em] w-[0.06em] translate-y-[0.12em] bg-violet-600 ${
+                  typedDescription.length < heroDescription.length
+                    ? 'animate-pulse'
+                    : 'opacity-0'
+                }`}
+              />
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              animate={
+                introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{
+                duration: reducedMotion ? 0 : 0.5,
+                delay: reducedMotion ? 0 : 1,
+              }}
               className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
             >
               <Button
@@ -773,45 +819,53 @@ export default function Hero() {
               </Button>
             </motion.div>
 
-            {/* Social Links */}
+            {/* Social Links
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              animate={
+                introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+              }
+              transition={{
+                duration: reducedMotion ? 0 : 0.5,
+                delay: reducedMotion ? 0 : 1.2,
+              }}
               className="mt-10 pt-6 border-t border-stone-200/60"
             >
               <SocialLinks links={personalInfo.socialLinks} />
             </motion.div>
 
             {/* Mobile-only interaction hint */}
-            <p className="mt-4 text-center text-[11px] font-medium tracking-widest uppercase text-stone-400 select-none lg:hidden">
+            {/* <p className="mt-4 text-center text-[11px] font-medium tracking-widest uppercase text-stone-400 select-none lg:hidden">
               Drag to swing · Tap to flip
-            </p>
+            </p> */}
           </div>
 
           {/* Right Column: Natural resting area for the badge on desktop (~42%) */}
-          <div className="lg:col-span-5 hidden lg:flex flex-col items-center justify-end pb-12 pointer-events-none min-h-[550px]">
+          {/* <div className="lg:col-span-5 hidden lg:flex flex-col items-center justify-end pb-12 pointer-events-none min-h-[550px]">
             <div className="pointer-events-auto">
               <p className="text-center text-[11px] font-medium tracking-widest uppercase text-stone-400 select-none">
                 Drag to swing · Tap to flip
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </Container>
 
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 1 }}
+        animate={introComplete ? { opacity: 1 } : { opacity: 0 }}
+        transition={{
+          duration: reducedMotion ? 0 : 0.5,
+          delay: reducedMotion ? 0 : 1,
+        }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-20 pointer-events-none"
       >
         <span className="text-[11px] font-medium tracking-widest uppercase text-stone-400">
           Scroll
         </span>
         <motion.div
-          animate={{ y: [0, 5, 0] }}
+          animate={reducedMotion ? { y: 0 } : { y: [0, 5, 0] }}
           transition={{
             duration: 1.5,
             repeat: Infinity,

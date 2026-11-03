@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
+import InteractiveFrames from '@/components/ui/InteractiveFrames';
 import './globals.css';
 
 const montserrat = Montserrat({
@@ -63,7 +64,8 @@ export default function RootLayout({
         suppressHydrationWarning
         className="min-h-screen bg-stone-50/30 text-stone-900 font-sans"
       >
-        {children}
+        <InteractiveFrames />
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );
