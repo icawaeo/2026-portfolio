@@ -7,6 +7,7 @@ import { Download, ArrowDown } from 'lucide-react';
 import Container from '@/components/shared/Container';
 import Button from '@/app/components/ui/Button';
 import SocialLinks from '@/app/components/ui/SocialLinks';
+import ShapeGrid from '@/components/ui/ShapeGrid';
 import { personalInfo } from '@/data/personal';
 
 // Dynamically import LanyardBadge with SSR disabled to safely handle browser APIs
@@ -617,6 +618,32 @@ export default function Hero() {
         <div className="absolute top-20 right-10 w-96 h-96 bg-stone-200/40 rounded-full blur-3xl" />
         <div className="absolute bottom-20 left-10 w-80 h-80 bg-amber-100/30 rounded-full blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(#e7e5e4_1px,transparent_1px)] [background-size:32px_32px] opacity-40" />
+      </div>
+
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0">
+        <ShapeGrid
+          shape="square"
+          direction="diagonal"
+          lineColor="#D8D1FF"
+          hoverColor="#7861FF"
+          hoverFillColor="#A78BFA"
+          fillOpacity={0.12}
+          cellSize={48}
+          lineWidth={1}
+          speed={0.25}
+          tiltX={0}
+          tiltY={0}
+          radius={1.5}
+          trail={0.6}
+          glow={0.3}
+          twinkle={0.03}
+          fade={0.65}
+          clickCascade={false}
+          intro={true}
+          opacity={0.8}
+          rainbow={false}
+          className="h-full w-full"
+        />
       </div>
 
       {/* ───────────── Full-Bleed Interactive Lanyard Badge Layer (z-10) ───────────── */}
