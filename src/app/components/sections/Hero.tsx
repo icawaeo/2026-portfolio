@@ -753,7 +753,7 @@ export default function Hero() {
               <motion.span
                 layoutId="portfolio-veronica-name"
                 aria-hidden="true"
-                className="inline-flex whitespace-nowrap bg-yellow-500 px-5 py-2 text-white shadow-[8px_8px_0_rgba(234,179,8,0.35)] ring-1 ring-white/70 sm:px-6 sm:py-2.5"
+                className="inline-flex origin-left -rotate-[5deg] whitespace-nowrap bg-yellow-500 px-5 py-2 text-white shadow-[8px_8px_0_rgba(234,179,8,0.35)] ring-1 ring-white/70 sm:px-6 sm:py-2.5"
               >
                 {heroName}
               </motion.span>
