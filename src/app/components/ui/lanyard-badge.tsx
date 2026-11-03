@@ -299,7 +299,7 @@ export function DefaultBadgeFront({
       style={{
         background: BG_MINT,
         color: '#FFFFFF',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
+        fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
       }}
     >
       {/* Upper Section: Photo Area (~76% Height) */}
@@ -533,7 +533,7 @@ export function DefaultBadgeFront({
       >
         <h3
           style={{
-            fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
+            fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
             fontSize: 14.8 * s,
             fontWeight: 700,
             letterSpacing: '0.07em',
@@ -574,7 +574,7 @@ export function DefaultBadgeFront({
           />
           <span
             style={{
-              fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
+              fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
               fontSize: 5.6 * s,
               fontWeight: 600,
               letterSpacing: '0.12em',

@@ -52,7 +52,7 @@ function BadgeFront({
       style={{
         background: BG_MINT,
         color: '#FFFFFF',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
+        fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
       }}
     >
       {/* ──────────────── Upper Section: Photo Area (~76% Height) ──────────────── */}
@@ -288,7 +288,7 @@ function BadgeFront({
         {/* Name: Clean Geist Sans typography with refined letter-spacing */}
         <h3
           style={{
-            fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
+            fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
             fontSize: 14.8 * s,
             fontWeight: 700,
             letterSpacing: '0.07em',
@@ -330,7 +330,7 @@ function BadgeFront({
           />
           <span
             style={{
-              fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
+              fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
               fontSize: 5.6 * s,
               fontWeight: 600,
               letterSpacing: '0.12em',
@@ -361,7 +361,7 @@ function BadgeBack({ cardWidth }: { cardWidth: number }) {
       style={{
         background: '#E8DFCC',
         color: '#25221F',
-        fontFamily: 'var(--font-geist-sans), system-ui, sans-serif',
+        fontFamily: 'var(--font-montserrat), system-ui, sans-serif',
       }}
     >
       {/* Top accent line */}
@@ -689,13 +689,13 @@ export default function Hero() {
               transition={{ duration: 0.5 }}
               className="mb-6 inline-flex"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3.5 py-1.5 text-xs font-semibold text-emerald-800 shadow-2xs backdrop-blur-xs">
+              {/* <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3.5 py-1.5 text-xs font-semibold text-emerald-800 shadow-2xs backdrop-blur-xs">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                 </span>
                 Open to Opportunities
-              </span>
+              </span> */}
             </motion.div>
 
             {/* Introductory label */}
