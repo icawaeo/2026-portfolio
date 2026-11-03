@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'motion/react';
 import { Download, ArrowDown } from 'lucide-react';
@@ -578,6 +578,30 @@ function useLanyardConfig(): LanyardConfig {
 export default function Hero() {
   const mounted = useIsMounted();
   const { cardWidth, anchorX, buckleY } = useLanyardConfig();
+  const [typedName, setTypedName] = useState('');
+  const heroName = personalInfo.name;
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const completionFrame = window.requestAnimationFrame(() => {
+        setTypedName(heroName);
+      });
+
+      return () => window.cancelAnimationFrame(completionFrame);
+    }
+
+    let characterIndex = 0;
+    const typingInterval = window.setInterval(() => {
+      characterIndex += 1;
+      setTypedName(heroName.slice(0, characterIndex));
+
+      if (characterIndex >= heroName.length) {
+        window.clearInterval(typingInterval);
+      }
+    }, 65);
+
+    return () => window.clearInterval(typingInterval);
+  }, [heroName]);
 
   return (
     <section
@@ -659,23 +683,34 @@ export default function Hero() {
 
             {/* Main heading */}
             <motion.h1
+              aria-label={`${heroName}.`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-7xl"
+              className="text-3xl font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-7xl"
             >
-              Veronica Waeo<span className="text-amber-500">.</span>
+              <span
+                aria-hidden="true"
+                className="inline-flex whitespace-nowrap bg-violet-600 px-5 py-2 text-white shadow-[8px_8px_0_rgba(196,181,253,0.65)] ring-1 ring-white/70 sm:px-6 sm:py-2.5"
+              >
+                {typedName}
+                <span
+                  className={`ml-1 inline-block h-[0.8em] w-[0.07em] self-center rounded-sm bg-white ${
+                    typedName.length < heroName.length ? 'animate-pulse' : 'opacity-0'
+                  }`}
+                />
+              </span>
             </motion.h1>
 
             {/* Professional subtitle */}
-            <motion.p
+            {/* <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="mt-3 text-base font-semibold text-stone-700 sm:text-lg"
             >
               Informatics Engineering Graduate
-            </motion.p>
+            </motion.p> */}
 
             {/* Supporting text */}
             <motion.p
