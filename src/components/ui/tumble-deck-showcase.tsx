@@ -165,7 +165,12 @@ export default function TumbleDeckShowcase({
       pin: pinTarget,
       start: () => {
         const nav = document.querySelector<HTMLElement>('[aria-label="Main navigation"]');
-        return `top top+=${Math.ceil((nav?.getBoundingClientRect().height ?? 80) + 8)}`;
+        const heading = pinTarget.querySelector<HTMLElement>('h2');
+        const headingOffset = heading
+          ? heading.getBoundingClientRect().top - pinTarget.getBoundingClientRect().top
+          : 0;
+        const headingTarget = (nav?.getBoundingClientRect().height ?? 80) + 64;
+        return `top top+=${Math.ceil(headingTarget - headingOffset)}`;
       },
       end: () => `+=${(cardCount - 1) * Math.max(window.innerHeight * 0.5, scrollPerCard)}`,
       scrub: reducedMotion ? false : 0.8,
@@ -173,7 +178,9 @@ export default function TumbleDeckShowcase({
         ? undefined
         : {
             snapTo: (progress) =>
-              userHasScrolled.current ? gsap.utils.snap(1 / (cardCount - 1), progress) : 0,
+              userHasScrolled.current
+                ? gsap.utils.snap(1 / (cardCount - 1), progress)
+                : progress,
             directional: true,
             delay: 0.16,
             duration: { min: 0.55, max: 0.9 },

@@ -37,7 +37,7 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative flex min-h-svh items-start overflow-visible bg-stone-50/50 pt-16"
+      className="relative z-10 isolate flex min-h-svh items-start overflow-visible bg-stone-50 pt-16"
     >
       <Container className="w-full pt-2">
         <SectionHeading

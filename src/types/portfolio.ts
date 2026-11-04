@@ -18,6 +18,10 @@ export interface Experience {
   description: string;
   highlights: string[];
   technologies: string[];
+  gallery?: {
+    src: string;
+    alt: string;
+  }[];
 }
 
 export interface Project {
