@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import Image from 'next/image';
 import { ExternalLink, FolderOpen, ArrowUpRight, X, Sparkles, CheckCircle2 } from 'lucide-react';
 import Badge from '@/components/shared/Badge';
 import { Project } from '@/types/portfolio';
@@ -9,14 +10,29 @@ import { Project } from '@/types/portfolio';
 interface ProjectCardProps {
   project: Project;
   index: number;
+  showCard?: boolean;
+  isOpen?: boolean;
+  onOpenChange?: (isOpen: boolean) => void;
 }
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function ProjectCard({
+  project,
+  index,
+  showCard = true,
+  isOpen: controlledIsOpen,
+  onOpenChange,
+}: ProjectCardProps) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isOpen = controlledIsOpen ?? internalIsOpen;
+  const setIsOpen = (nextIsOpen: boolean) => {
+    if (controlledIsOpen === undefined) setInternalIsOpen(nextIsOpen);
+    onOpenChange?.(nextIsOpen);
+  };
 
   return (
     <>
-      <motion.article
+      {showCard && (
+        <motion.article
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
@@ -103,7 +119,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             )}
           </div>
         </div>
-      </motion.article>
+        </motion.article>
+      )}
 
       {/* Detail Modal */}
       <AnimatePresence>
@@ -124,7 +141,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 10 }}
               transition={{ duration: 0.25 }}
-              className="relative w-full max-w-2xl rounded-2xl border border-stone-200 bg-white p-6 sm:p-8 shadow-2xl z-10 my-8 overflow-hidden"
+              className="relative my-8 w-full max-w-5xl overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 shadow-2xl sm:p-10 z-10"
             >
               {/* Close Button */}
               <button
@@ -145,6 +162,17 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               <h3 className="text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl mb-3">
                 {project.title}
               </h3>
+
+              {project.imageUrl && (
+                <Image
+                  src={project.imageUrl}
+                  alt={`${project.title} project preview`}
+                  width={1600}
+                  height={1000}
+                  unoptimized
+                  className="mb-6 max-h-[50svh] w-full rounded-lg border border-stone-200 object-cover object-top"
+                />
+              )}
 
               {project.highlight && (
                 <div className="mb-5 flex items-center gap-2 rounded-xl bg-amber-50/80 p-3.5 border border-amber-200 text-sm font-medium text-amber-900">

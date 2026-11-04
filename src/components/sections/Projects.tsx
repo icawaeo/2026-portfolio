@@ -1,58 +1,72 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'motion/react';
+import { useRef, useState } from 'react';
 import Container from '@/components/shared/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ProjectCard from '@/components/ui/ProjectCard';
-import { projects, projectCategories } from '@/data/projects';
+import TumbleDeckShowcase, { type TumbleCard } from '@/components/ui/tumble-deck-showcase';
+import { projects } from '@/data/projects';
 
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
 
-  const filteredProjects =
-    activeCategory === 'All'
-      ? projects
-      : projects.filter((p) => p.categoryFilter === activeCategory);
+  const deckCards: TumbleCard[] = projects.map((project) => ({
+    src: project.imageUrl,
+    alt: `${project.title} project preview`,
+    title: project.title,
+    year: project.year,
+    category: project.category,
+    projectType: `${project.categoryFilter} Project`,
+    description: project.description,
+    technologies: project.technologies,
+    highlight: project.highlight,
+    accent:
+      project.categoryFilter === 'UI/UX Design'
+        ? '#be123c'
+        : project.categoryFilter === 'System Analysis'
+          ? '#0e7490'
+          : '#b45309',
+    onSelect: () => setSelectedProjectId(project.id),
+  }));
+
+  const selectedProject = projects.find((project) => project.id === selectedProjectId);
 
   return (
-    <section id="projects" className="py-20 sm:py-28 bg-stone-50/50">
-      <Container>
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="relative flex min-h-svh items-start overflow-visible bg-stone-50/50 py-0"
+    >
+      <Container className="w-full pt-2">
         <SectionHeading
           title="Things I've Built."
           subtitle="A collection of projects that showcase my design, analysis, and development work."
+          align="center"
+          subtitleCentered
+          className="mb-10"
+          titleClassName="!text-4xl !font-semibold sm:!text-5xl lg:!text-6xl"
         />
 
-        {/* Category filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mb-10 flex flex-wrap gap-2"
-        >
-          {projectCategories.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategory(cat)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer ${
-                activeCategory === cat
-                  ? 'bg-stone-900 text-white shadow-sm'
-                  : 'bg-white text-stone-600 border border-stone-200 hover:border-stone-300 hover:text-stone-800'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </motion.div>
+        <TumbleDeckShowcase
+          cards={deckCards}
+          height="min(54svh, 560px)"
+          aspect={2.06}
+          pinTargetRef={sectionRef}
+          ariaLabel="Selected projects"
+        />
 
-        {/* Project grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-        </div>
+        {selectedProject && (
+          <ProjectCard
+            project={selectedProject}
+            index={0}
+            showCard={false}
+            isOpen
+            onOpenChange={(isOpen) => {
+              if (!isOpen) setSelectedProjectId(null);
+            }}
+          />
+        )}
       </Container>
     </section>
   );

@@ -4,6 +4,7 @@ export const projects: Project[] = [
   {
     id: 'pwa-room-reservation',
     title: 'PWA Room Reservation System',
+    year: 2026,
     category: 'Web Development / System Analysis',
     categoryFilter: 'Web Development',
     description: 'Progressive Web App for room reservation management at the Faculty of Engineering, Sam Ratulangi University.',
@@ -13,6 +14,7 @@ export const projects: Project[] = [
   {
     id: 'd-landrow',
     title: 'D-LANDROW',
+    year: 2025,
     category: 'System Development',
     categoryFilter: 'System Analysis',
     description: 'Land acquisition and right-of-way project management system developed during the PLN internship.',
@@ -21,6 +23,7 @@ export const projects: Project[] = [
   {
     id: 'attendance-tracking',
     title: 'Attendance Tracking System',
+    year: 2025,
     category: 'Web Application',
     categoryFilter: 'Web Development',
     description: 'Web-based attendance system with geolocation and camera-based verification.',
@@ -29,6 +32,7 @@ export const projects: Project[] = [
   {
     id: 'visitor-registration',
     title: 'Visitor Registration System',
+    year: 2025,
     category: 'Web Application',
     categoryFilter: 'Web Development',
     description: 'Digital visitor registration application with camera validation.',
@@ -37,6 +41,7 @@ export const projects: Project[] = [
   {
     id: 'calmie-mobile',
     title: 'CALMIE Mobile',
+    year: 2025,
     category: 'UI/UX Design',
     categoryFilter: 'UI/UX Design',
     description: 'Mobile application concept designed to support users experiencing anxiety and panic attacks.',
@@ -45,6 +50,7 @@ export const projects: Project[] = [
   {
     id: 'e-voting-unity',
     title: 'E-Voting App UNITY',
+    year: 2026,
     category: 'UI/UX Design',
     categoryFilter: 'UI/UX Design',
     description: 'A digital voting application with web and mobile interfaces.',

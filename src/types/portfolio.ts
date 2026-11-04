@@ -23,6 +23,7 @@ export interface Experience {
 export interface Project {
   id: string;
   title: string;
+  year: number;
   category: string;
   categoryFilter: string;
   description: string;
