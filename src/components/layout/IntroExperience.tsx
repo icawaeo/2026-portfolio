@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import { LayoutGroup } from 'motion/react';
-import IntroScreen from '@/components/IntroScreen';
+import IntroScreen from '@/components/animations/intro';
 
 export const IntroRevealContext = createContext<boolean | null>(null);
 

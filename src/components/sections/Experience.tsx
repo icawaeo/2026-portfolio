@@ -1,6 +1,6 @@
 import Container from '@/components/shared/Container';
-import SectionHeading from '@/app/components/ui/SectionHeading';
-import ExperienceCard from '@/app/components/ui/ExperienceCard';
+import SectionHeading from '@/components/ui/SectionHeading';
+import ExperienceCard from '@/components/ui/ExperienceCard';
 import { experiences } from '@/data/experiences';
 
 export default function Experience() {

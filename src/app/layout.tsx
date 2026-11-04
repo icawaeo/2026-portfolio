@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
-import InteractiveFrames from '@/components/ui/InteractiveFrames';
+import InteractiveFrames from '@/components/animations/interactive-frames';
 import './globals.css';
 
 const montserrat = Montserrat({

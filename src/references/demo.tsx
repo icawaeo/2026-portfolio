@@ -1,6 +1,6 @@
 "use client"
 
-import LanyardBadge from "../app/components/ui/lanyard-badge";
+import LanyardBadge from "../components/animations/lanyard";
 
 export default function Demo() {
   return (

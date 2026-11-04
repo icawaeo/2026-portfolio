@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import { Users } from 'lucide-react';
 import Container from '@/components/shared/Container';
-import SectionHeading from '@/app/components/ui/SectionHeading';
+import SectionHeading from '@/components/ui/SectionHeading';
 import Badge from '@/components/shared/Badge';
 import { organizations } from '@/data/organizations';
 
@@ -53,4 +53,3 @@ export default function Organization() {
     </section>
   );
 }
-

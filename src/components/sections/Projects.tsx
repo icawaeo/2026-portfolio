@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import Container from '@/components/shared/Container';
-import SectionHeading from '@/app/components/ui/SectionHeading';
-import ProjectCard from '@/app/components/ui/ProjectCard';
+import SectionHeading from '@/components/ui/SectionHeading';
+import ProjectCard from '@/components/ui/ProjectCard';
 import { projects, projectCategories } from '@/data/projects';
 
 export default function Projects() {
@@ -57,4 +57,3 @@ export default function Projects() {
     </section>
   );
 }
-

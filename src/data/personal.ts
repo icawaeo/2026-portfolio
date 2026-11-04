@@ -1,4 +1,4 @@
-import { PersonalInfo, NavItem } from '@/types/portfolio';
+import { PersonalInfo } from '@/types/portfolio';
 
 export const personalInfo: PersonalInfo = {
   name: 'Veronica Waeo',
@@ -21,13 +21,3 @@ export const personalInfo: PersonalInfo = {
     { value: '5+', label: 'Design & Dev Projects' },
   ],
 };
-
-export const navItems: NavItem[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Activities', href: '#activities' },
-  { label: 'Contact', href: '#contact' },
-];

@@ -1,6 +1,6 @@
 import Container from '@/components/shared/Container';
-import SectionHeading from '@/app/components/ui/SectionHeading';
-import SkillCard from '@/app/components/ui/SkillCard';
+import SectionHeading from '@/components/ui/SectionHeading';
+import SkillCard from '@/components/ui/SkillCard';
 import { skillCategories } from '@/data/skills';
 
 export default function Skills() {
@@ -20,4 +20,3 @@ export default function Skills() {
     </section>
   );
 }
-

@@ -3,9 +3,9 @@
 import { motion } from 'motion/react';
 import { Send } from 'lucide-react';
 import Container from '@/components/shared/Container';
-import SectionHeading from '@/app/components/ui/SectionHeading';
-import Button from '@/app/components/ui/Button';
-import SocialLinks from '@/app/components/ui/SocialLinks';
+import SectionHeading from '@/components/ui/SectionHeading';
+import Button from '@/components/ui/Button';
+import SocialLinks from '@/components/ui/SocialLinks';
 import { personalInfo } from '@/data/personal';
 
 export default function Contact() {
@@ -42,4 +42,3 @@ export default function Contact() {
     </section>
   );
 }
-

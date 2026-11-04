@@ -3,7 +3,7 @@
 import { motion } from 'motion/react';
 import { Heart } from 'lucide-react';
 import Container from '@/components/shared/Container';
-import SectionHeading from '@/app/components/ui/SectionHeading';
+import SectionHeading from '@/components/ui/SectionHeading';
 import { volunteerActivities } from '@/data/volunteer';
 
 export default function Volunteer() {
@@ -68,4 +68,3 @@ export default function Volunteer() {
     </section>
   );
 }
-
