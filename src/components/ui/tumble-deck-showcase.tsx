@@ -147,7 +147,11 @@ export default function TumbleDeckShowcase({
     fit();
     const resizeObserver = new ResizeObserver(fit);
     resizeObserver.observe(root);
-    return () => resizeObserver.disconnect();
+    window.addEventListener('resize', fit);
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', fit);
+    };
   }, [aspect, paint]);
 
   React.useEffect(() => {
@@ -298,7 +302,7 @@ export default function TumbleDeckShowcase({
     >
       <style>{`
         .td-scene { position: absolute; inset: 0; transform-style: preserve-3d; }
-        .td-meta { position: absolute; z-index: 20; top: 4px; left: 50%; display: grid; width: min(calc(var(--td-w) * 1.12), calc(100% - 32px)); grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px; transform: translateX(-50%); color: #0c0a09; font-family: var(--font-montserrat), sans-serif; font-size: clamp(13px, 1.35vw, 17px); font-weight: 600; line-height: 1.25; letter-spacing: -.025em; text-transform: uppercase; }
+        .td-meta { position: absolute; z-index: 20; top: 4px; left: 50%; display: grid; width: min(calc(var(--td-w) * 1.12), calc(100% - 32px)); grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 16px; transform: translateX(-50%); color: #0c0a09; font-family: var(--font-montserrat), sans-serif; font-size: clamp(13px, 1.4vw, 19px); font-weight: 600; line-height: 1.25; letter-spacing: -.025em; text-transform: uppercase; }
         .td-meta-title { min-width: 0; overflow-wrap: anywhere; }
         .td-meta-type { text-align: right; }
         .td-card { position: absolute; left: 50%; top: var(--td-top); width: var(--td-w); height: var(--td-h); margin-left: calc(var(--td-w) / -2); transform-origin: 50% 100%; transform-style: preserve-3d; backface-visibility: visible; will-change: transform; border-radius: 6px; overflow: visible; cursor: grab; background: #fff; box-shadow: 0 0 0 1px rgba(28,25,23,.12), 0 22px 54px rgba(28,25,23,.2); }
@@ -307,13 +311,13 @@ export default function TumbleDeckShowcase({
         .td-card-content { display: block; width: 100%; height: 100%; overflow: hidden; padding: 0; border: 0; border-radius: 6px; background: transparent; color: inherit; text-align: left; cursor: inherit; }
         .td-card-image { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 0%; pointer-events: none; }
         .td-project-face { display: flex; height: 100%; flex-direction: column; padding: clamp(14px, 2.2vw, 28px); background: radial-gradient(ellipse at 82% 18%, color-mix(in srgb, var(--td-accent) 20%, transparent), transparent 44%), linear-gradient(145deg, #fff 0%, color-mix(in srgb, var(--td-accent) 8%, #fff) 100%); }
-        .td-project-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(28,25,23,.12); padding-bottom: 12px; color: #57534e; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+        .td-project-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(28,25,23,.12); padding-bottom: 12px; color: #57534e; font-size: clamp(11px, .9vw, 13px); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
         .td-project-body { display: flex; min-height: 0; flex: 1; flex-direction: column; justify-content: flex-start; }
-        .td-project-title { margin: 8px 0; color: var(--td-accent); font-size: clamp(20px, 2.8vw, 36px); font-weight: 800; line-height: 1.06; }
-        .td-project-description { display: -webkit-box; max-width: 46rem; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; color: #57534e; font-size: clamp(12px, 1.2vw, 14px); line-height: 1.45; }
-        .td-project-bottom { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-        .td-project-tag { border: 1px solid rgba(28,25,23,.14); border-radius: 4px; background: rgba(255,255,255,.72); padding: 5px 8px; color: #57534e; font-size: 10px; font-weight: 600; }
-        .td-project-highlight { margin-top: 8px; color: #292524; font-size: 12px; font-weight: 600; }
+        .td-project-title { margin: 8px 0; color: var(--td-accent); font-size: clamp(22px, 3vw, 42px); font-weight: 800; line-height: 1.06; }
+        .td-project-description { display: -webkit-box; max-width: 46rem; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; color: #57534e; font-size: clamp(13px, 1.25vw, 17px); line-height: 1.5; }
+        .td-project-bottom { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .td-project-tag { border: 1px solid rgba(28,25,23,.14); border-radius: 4px; background: rgba(255,255,255,.72); padding: 6px 9px; color: #57534e; font-size: clamp(10px, .9vw, 12px); font-weight: 600; }
+        .td-project-highlight { margin-top: 10px; color: #292524; font-size: clamp(12px, 1vw, 15px); font-weight: 600; }
         .td-root:focus-visible { box-shadow: inset 0 0 0 2px var(--color-primary); }
         @media (max-width: 520px) { .td-meta { top: 4px; width: calc(100% - 24px); gap: 8px; font-size: clamp(11px, 3vw, 14px); } .td-project-face { padding: 14px; } .td-project-title { font-size: 24px; } .td-project-description { -webkit-line-clamp: 2; font-size: 12px; } .td-project-bottom { gap: 5px; margin-top: 12px; } .td-project-tag { padding: 4px 7px; font-size: 9px; } .td-project-highlight { display: none; } }
       `}</style>

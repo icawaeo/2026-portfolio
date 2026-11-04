@@ -48,27 +48,27 @@ export const Timeline = ({ data }: TimelineProps) => {
 
   return (
     <div ref={containerRef} className="relative w-full">
-      <div ref={timelineRef} className="relative mx-auto max-w-7xl pb-12 md:pb-16">
+      <div ref={timelineRef} className="relative mx-auto w-full pb-12 md:pb-16">
         {data.map((item, index) => (
           <div
             key={`${item.title}-${index}`}
-            className="relative flex justify-start pt-8 md:gap-8 md:pt-14"
+            className="relative flex justify-start pt-8 md:gap-12 md:pt-14 xl:gap-16"
           >
             <div className="absolute left-0 top-8 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-stone-50 md:hidden">
               <div className="h-4 w-4 rounded-full border-2 border-violet-300 bg-violet-100 shadow-[0_0_0_4px_rgb(250_248_255)]" />
             </div>
 
-            <div className="sticky top-28 z-20 hidden h-fit max-w-sm self-start md:flex md:w-[38%] md:items-start">
+            <div className="sticky top-28 z-20 hidden h-fit self-start md:w-[38%] md:shrink-0 md:flex md:items-start">
               <div className="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full bg-stone-50">
                 <div className="h-4 w-4 rounded-full border-2 border-violet-300 bg-violet-100 shadow-[0_0_0_4px_rgb(250_248_255)]" />
               </div>
-              <h3 className="pl-16 pt-1 text-4xl font-semibold leading-tight tracking-tight text-stone-500 lg:text-5xl">
+              <h3 className="pl-16 pt-1 text-4xl font-semibold leading-tight tracking-tight text-stone-900 lg:text-5xl 2xl:text-6xl">
                 {item.title}
               </h3>
             </div>
 
-            <div className="relative w-full pl-16 pr-1 md:pl-0 md:pr-4">
-              <h3 className="mb-3 text-2xl font-semibold leading-tight tracking-tight text-stone-500 md:hidden">
+            <div className="relative w-full min-w-0 pl-20 pr-1 md:flex-1 md:pl-8 md:pr-4 xl:pl-12 xl:pr-6">
+              <h3 className="mb-3 text-2xl font-semibold leading-tight tracking-tight text-stone-900 md:hidden">
                 {item.title}
               </h3>
               {item.content}

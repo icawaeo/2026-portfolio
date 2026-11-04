@@ -27,11 +27,11 @@ export default function SectionHeading({
       transition={{ duration: 0.5 }}
       className={`${className} ${align === 'center' ? 'text-center' : ''}`}
     >
-      <h2 className={`text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl lg:text-5xl ${titleClassName}`}>
+      <h2 className={`text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl lg:text-5xl 2xl:text-6xl ${titleClassName}`}>
         {title}
       </h2>
       {subtitle && (
-        <p className={`mt-4 max-w-2xl text-base text-stone-500 sm:text-lg leading-relaxed ${subtitleCentered ? 'mx-auto' : ''}`}>
+        <p className={`mt-4 max-w-3xl text-base text-stone-500 sm:text-lg xl:text-xl leading-relaxed ${subtitleCentered ? 'mx-auto' : ''}`}>
           {subtitle}
         </p>
       )}

@@ -45,13 +45,13 @@ export default function Projects() {
           subtitle="A collection of projects that showcase my design, analysis, and development work."
           align="center"
           subtitleCentered
-          className="mb-10"
-          titleClassName="!text-4xl !font-semibold sm:!text-5xl lg:!text-6xl"
+          className="mb-10 xl:mb-14"
+          titleClassName="!text-4xl !font-semibold sm:!text-5xl lg:!text-6xl 2xl:!text-7xl"
         />
 
         <TumbleDeckShowcase
           cards={deckCards}
-          height="min(54svh, 560px)"
+          height="clamp(28rem, 62svh, 42rem)"
           aspect={2.06}
           pinTargetRef={sectionRef}
           ariaLabel="Selected projects"

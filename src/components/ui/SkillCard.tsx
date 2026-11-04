@@ -32,14 +32,14 @@ export default function SkillCard({ category, index }: SkillCardProps) {
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full text-left rounded-xl border border-stone-200 bg-white transition-all duration-300 hover:border-stone-300 hover:shadow-md overflow-hidden cursor-pointer"
       >
-        <div className="flex items-center justify-between p-5 sm:p-6">
-          <div className="flex items-center gap-4">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-stone-50 border border-stone-100">
-              {Icon && <Icon className="h-5 w-5 text-stone-600" />}
+        <div className="flex items-center justify-between p-5 sm:p-6 xl:p-7">
+          <div className="flex items-center gap-4 xl:gap-5">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-stone-100 bg-stone-50 xl:h-12 xl:w-12">
+              {Icon && <Icon className="h-5 w-5 text-stone-600 xl:h-6 xl:w-6" />}
             </div>
             <div>
-              <h3 className="text-base font-semibold text-stone-900">{category.title}</h3>
-              <p className="text-xs text-stone-400 mt-0.5">{category.skills.length} skills</p>
+              <h3 className="text-base font-semibold text-stone-900 xl:text-lg">{category.title}</h3>
+              <p className="mt-0.5 text-xs text-stone-400 xl:text-sm">{category.skills.length} skills</p>
             </div>
           </div>
           <ChevronDown
@@ -58,12 +58,12 @@ export default function SkillCard({ category, index }: SkillCardProps) {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+              <div className="px-5 pb-5 sm:px-6 sm:pb-6 xl:px-7 xl:pb-7">
                 <div className="flex flex-wrap gap-2 pt-3 border-t border-stone-100">
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="rounded-full bg-stone-50 border border-stone-200 px-3 py-1.5 text-sm text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-800"
+                      className="rounded-full border border-stone-200 bg-stone-50 px-3 py-1.5 text-sm text-stone-600 transition-colors hover:bg-stone-100 hover:text-stone-800 xl:px-4 xl:py-2 xl:text-base"
                     >
                       {skill}
                     </span>

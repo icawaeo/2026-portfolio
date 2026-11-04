@@ -11,7 +11,7 @@ export default function Skills() {
           title="What I Bring to the Table."
           subtitle="A diverse toolkit spanning design, analysis, development, and collaboration."
         />
-        <div className="grid gap-4 max-w-3xl">
+        <div className="grid max-w-6xl gap-4 xl:gap-5">
           {skillCategories.map((category, index) => (
             <SkillCard key={category.id} category={category} index={index} />
           ))}

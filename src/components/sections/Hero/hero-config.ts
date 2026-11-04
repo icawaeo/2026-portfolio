@@ -5,7 +5,7 @@ export interface LanyardConfig {
 }
 
 export const DESKTOP_LANYARD_CONFIG: LanyardConfig = {
-  cardWidth: 230,
+  cardWidth: 280,
   anchorX: 0.73,
   buckleY: 195,
 };

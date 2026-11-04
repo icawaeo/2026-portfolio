@@ -108,7 +108,7 @@ function AnimatedNavButton({
       data-nav-index={index}
     >
       <motion.span
-        className="relative inline-flex items-center justify-center whitespace-nowrap rounded-full border px-5 py-3 text-base font-semibold sm:px-7 sm:py-3.5 sm:text-lg"
+        className="relative inline-flex items-center justify-center whitespace-nowrap rounded-full border px-5 py-3 text-base font-semibold sm:px-7 sm:py-3.5 sm:text-lg xl:px-8 xl:py-4 xl:text-xl"
         style={{ backgroundColor, borderColor, boxShadow: shadow }}
         whileHover={
           prefersReducedMotion ? undefined : { scale: 1.035, y: -2 }
@@ -319,7 +319,7 @@ export default function ScatteredNav() {
 
           <p
             aria-label="I make buttons look clickable."
-            className="pointer-events-none relative z-0 mx-auto max-w-[90vw] select-none text-center text-[clamp(2.7rem,8vw,6.8rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-stone-950 sm:max-w-[88vw]"
+            className="pointer-events-none relative z-0 mx-auto max-w-[90vw] select-none text-center text-[clamp(2.7rem,8vw,8rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-stone-950 sm:max-w-[88vw]"
           >
             <TaglineWord word="I" index={0} progress={scrollYProgress} prefersReducedMotion={prefersReducedMotion} />{' '}
             <TaglineWord word="make" index={1} progress={scrollYProgress} prefersReducedMotion={prefersReducedMotion} />{' '}
@@ -345,7 +345,7 @@ export default function ScatteredNav() {
         <nav
           ref={navRef}
           aria-label="Main navigation"
-          className="mx-auto flex min-h-14 max-w-5xl flex-wrap items-center justify-center gap-1 px-2 py-2 sm:min-h-16 sm:gap-1.5 sm:px-4"
+          className="mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-center gap-1 px-2 py-2 sm:min-h-16 sm:gap-1.5 sm:px-4 xl:min-h-20 xl:gap-2.5 xl:px-6"
         >
           {NAV_BUTTONS.map((button, index) => (
             <span

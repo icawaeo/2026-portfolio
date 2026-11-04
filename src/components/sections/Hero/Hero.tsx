@@ -123,8 +123,8 @@ export default function Hero() {
         suppressHydrationWarning
         className="absolute inset-0 -z-10 pointer-events-none"
       >
-        <div className="absolute top-20 right-10 w-96 h-96 bg-stone-200/40 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-10 w-80 h-80 bg-amber-100/30 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-10 h-96 w-96 rounded-full bg-stone-200/40 blur-3xl xl:h-[28rem] xl:w-[28rem]" />
+        <div className="absolute bottom-20 left-10 h-80 w-80 rounded-full bg-amber-100/30 blur-3xl xl:h-96 xl:w-96" />
         <div className="absolute inset-0 bg-[radial-gradient(#e7e5e4_1px,transparent_1px)] [background-size:32px_32px] opacity-40" />
       </div>
 
@@ -218,7 +218,7 @@ export default function Hero() {
                 duration: reducedMotion ? 0 : 0.5,
                 delay: reducedMotion ? 0 : 0.1,
               }}
-              className="mb-2 text-lg font-semibold tracking-tight text-black sm:text-4xl"
+              className="mb-2 text-lg font-semibold tracking-tight text-black sm:text-4xl lg:text-[clamp(2.5rem,3.2vw,3.75rem)]"
             >
               Hello, I&apos;m
             </motion.p>
@@ -231,7 +231,7 @@ export default function Hero() {
                 introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
               }
               transition={{ duration: reducedMotion ? 0 : 0.6 }}
-              className="text-3xl font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-7xl"
+              className="text-3xl font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-[clamp(4.5rem,5.2vw,6.25rem)]"
             >
               <motion.span
                 layoutId="portfolio-veronica-name"
@@ -262,7 +262,7 @@ export default function Hero() {
                 duration: reducedMotion ? 0 : 0.5,
                 delay: reducedMotion ? 0 : 0.5,
               }}
-              className="mt-15 min-h-[8.125em] max-w-xl text-base leading-relaxed text-black-500 sm:min-h-[5em] sm:text-lg"
+              className="mt-15 min-h-[8.125em] max-w-2xl text-base leading-relaxed text-black-500 sm:min-h-[5em] sm:text-lg xl:text-xl"
               aria-label={heroDescription}
             >
               <span aria-hidden="true">{typedDescription}</span>
