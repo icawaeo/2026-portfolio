@@ -12,6 +12,7 @@ export interface Stat {
 export interface Experience {
   id: string;
   position: string;
+  logo?: string;
   organization: string;
   period: string;
   type: string;

@@ -4,6 +4,7 @@ export const experiences: Experience[] = [
   {
     id: 'pln-intern',
     position: 'IT Intern',
+    logo: '/images/logo-pln.png',
     organization: 'PT PLN (Persero) – Unit Pelaksana Proyek Sulawesi Utara',
     period: 'June 2025 – August 2025',
     type: 'Internship',
@@ -19,6 +20,7 @@ export const experiences: Experience[] = [
   {
     id: 'unsrat-lab-assistant',
     position: 'Laboratory Assistant',
+    logo: '/images/logo-lab.png',
     organization: 'UNSRAT Informatics Laboratory',
     period: 'February 2025 – July 2026',
     type: 'Part-time',
@@ -33,8 +35,9 @@ export const experiences: Experience[] = [
   {
     id: 'db-teaching-assistant',
     position: 'Lecturer Assistant – Database Technology',
+    logo: '/images/logo-unsrat.png',
     organization: 'Sam Ratulangi University',
-    period: '2024',
+    period: 'May 2024 – November 2024',
     type: 'Academic',
     description: 'Assisted in delivering PostgreSQL practical sessions and managed academic administration.',
     highlights: [

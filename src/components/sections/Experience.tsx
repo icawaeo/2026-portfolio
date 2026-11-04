@@ -9,13 +9,28 @@ export default function Experience() {
     title: experience.period,
     content: (
       <article className={index === experiences.length - 1 ? 'pb-[30svh]' : 'pb-8'}>
-        <h4 className="text-base font-semibold tracking-tight text-stone-900 sm:text-lg xl:text-2xl 2xl:text-[1.75rem]">
-          {experience.organization}
-        </h4>
-        <p className="mt-1 text-xs font-medium text-stone-500 sm:text-sm xl:text-lg 2xl:text-xl">
-          {experience.position} <span aria-hidden="true">·</span> {experience.type}
-        </p>
-        <p className="mt-3 max-w-4xl text-sm leading-6 text-stone-600 sm:text-base xl:text-xl xl:leading-8 2xl:text-[1.375rem]">
+        <div className="flex items-center gap-3 xl:gap-4">
+          <span className="relative size-12 shrink-0 xl:size-14 2xl:size-16">
+            {experience.logo && (
+              <Image
+                src={experience.logo}
+                alt=""
+                fill
+                sizes="(max-width: 1279px) 48px, (max-width: 1535px) 56px, 64px"
+                className="object-contain"
+              />
+            )}
+          </span>
+          <div className="min-w-0">
+            <h4 className="text-lg font-bold uppercase tracking-tight text-stone-900 sm:text-xl xl:text-3xl 2xl:text-[2rem]">
+              {experience.position}
+            </h4>
+            <p className="mt-0.5 text-sm font-semibold leading-snug text-stone-500 sm:text-base xl:text-lg 2xl:text-xl">
+              {experience.organization}
+            </p>
+          </div>
+        </div>
+        <p className="mt-6 max-w-4xl text-sm leading-6 text-stone-600 sm:text-base xl:mt-8 xl:text-lg xl:leading-8 2xl:text-xl">
           {experience.description}
         </p>
 
@@ -93,7 +108,7 @@ export default function Experience() {
       <Container>
         <SectionHeading
           title="Where I've Worked."
-          subtitle="A timeline of my professional experiences and contributions."
+          subtitle="A timeline of my professional experiences and contributions. Your company logo would look good here, just saying! :)"
           align="center"
           subtitleCentered
           className="mb-10"

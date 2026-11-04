@@ -133,7 +133,10 @@ export default function TumbleDeckShowcase({
       const widthFraction = rootWidth < 520 ? 0.9 : 0.92;
       const cardHeight = Math.max(60, Math.min((rootWidth * widthFraction) / cardAspect, rootHeight * 0.9, 620));
       const cardWidth = cardHeight * cardAspect;
-      const top = Math.max(44, (rootHeight - cardHeight) / 2 + 52);
+      const top = Math.max(
+        44,
+        (rootHeight - cardHeight) / 2 + (rootWidth < 520 ? 52 : 76),
+      );
 
       geometry.current = { height: cardHeight, gap: 0.24 * cardHeight };
       scene.style.perspective = `${6 * cardHeight}px`;
