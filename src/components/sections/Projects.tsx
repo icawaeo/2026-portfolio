@@ -3,9 +3,10 @@
 import { useRef, useState } from 'react';
 import Container from '@/components/shared/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
-import ProjectCard from '@/components/ui/ProjectCard';
+import ProjectDetailModal from '@/components/ui/ProjectDetailModal';
 import TumbleDeckShowcase, { type TumbleCard } from '@/components/ui/tumble-deck-showcase';
 import { projects } from '@/data/projects';
+import { projectDetails } from '@/data/project-details';
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -36,7 +37,7 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative flex min-h-svh items-start overflow-visible bg-stone-50/50 py-0"
+      className="relative flex min-h-svh items-start overflow-visible bg-stone-50/50 pt-16"
     >
       <Container className="w-full pt-2">
         <SectionHeading
@@ -56,18 +57,12 @@ export default function Projects() {
           ariaLabel="Selected projects"
         />
 
-        {selectedProject && (
-          <ProjectCard
-            project={selectedProject}
-            index={0}
-            showCard={false}
-            isOpen
-            onOpenChange={(isOpen) => {
-              if (!isOpen) setSelectedProjectId(null);
-            }}
-          />
-        )}
       </Container>
+      <ProjectDetailModal
+        project={selectedProject ?? null}
+        detail={selectedProject ? projectDetails[selectedProject.id] : undefined}
+        onClose={() => setSelectedProjectId(null)}
+      />
     </section>
   );
 }

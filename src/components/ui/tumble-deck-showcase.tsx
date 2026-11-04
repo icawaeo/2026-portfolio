@@ -100,6 +100,7 @@ export default function TumbleDeckShowcase({
   const dragRef = React.useRef<{ pointerId: number; y: number; moved: boolean } | null>(null);
   const triggerRef = React.useRef<ScrollTrigger | null>(null);
   const dragged = React.useRef(false);
+  const userHasScrolled = React.useRef(false);
   const cardCount = cards.length;
 
   const paint = React.useCallback(() => {
@@ -158,6 +159,7 @@ export default function TumbleDeckShowcase({
     }
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    userHasScrolled.current = false;
     const trigger = ScrollTrigger.create({
       trigger: pinTarget,
       pin: pinTarget,
@@ -170,7 +172,8 @@ export default function TumbleDeckShowcase({
       snap: reducedMotion
         ? undefined
         : {
-            snapTo: 1 / (cardCount - 1),
+            snapTo: (progress) =>
+              userHasScrolled.current ? gsap.utils.snap(1 / (cardCount - 1), progress) : 0,
             directional: true,
             delay: 0.16,
             duration: { min: 0.55, max: 0.9 },
@@ -180,17 +183,41 @@ export default function TumbleDeckShowcase({
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
+        if (!userHasScrolled.current) {
+          position.current = 0;
+          paint();
+          return;
+        }
         const deckPosition = self.progress * (cardCount - 1);
         position.current = reducedMotion ? Math.round(deckPosition) : deckPosition;
         paint();
       },
     });
 
+    const markUserScroll = (event: Event) => {
+      if (!event.isTrusted || !trigger.isActive) return;
+      userHasScrolled.current = true;
+    };
+    const markKeyboardScroll = (event: KeyboardEvent) => {
+      if (
+        ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)
+      ) {
+        markUserScroll(event);
+      }
+    };
+
+    window.addEventListener('wheel', markUserScroll, { passive: true });
+    window.addEventListener('touchmove', markUserScroll, { passive: true });
+    window.addEventListener('keydown', markKeyboardScroll);
+
     triggerRef.current = trigger;
     trigger.update();
 
     return () => {
       trigger.kill();
+      window.removeEventListener('wheel', markUserScroll);
+      window.removeEventListener('touchmove', markUserScroll);
+      window.removeEventListener('keydown', markKeyboardScroll);
       if (triggerRef.current === trigger) triggerRef.current = null;
     };
   }, [cardCount, paint, pinTargetRef, scrollPerCard]);
@@ -240,6 +267,7 @@ export default function TumbleDeckShowcase({
     const nextPosition = Math.max(0, Math.min(cardCount - 1, Math.round(position.current) + direction));
     const trigger = triggerRef.current;
     if (trigger && cardCount > 1) {
+      userHasScrolled.current = true;
       trigger.scroll(trigger.start + ((trigger.end - trigger.start) * nextPosition) / (cardCount - 1));
       ScrollTrigger.update();
     } else {

@@ -34,6 +34,21 @@ export interface Project {
   caseStudyUrl?: string;
 }
 
+export interface ProjectGalleryImage {
+  src: string;
+  alt: string;
+  caption: string;
+  aspectRatio: string;
+}
+
+export interface ProjectDetail {
+  role: string;
+  problem: string;
+  goal: string;
+  contribution: string;
+  gallery: ProjectGalleryImage[];
+}
+
 export interface SkillCategory {
   id: string;
   title: string;
