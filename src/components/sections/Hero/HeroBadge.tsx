@@ -148,6 +148,8 @@ export function BadgeFront({
             <img
               src={currentSrc}
               alt="Veronica Waeo"
+              draggable={false}
+              onDragStart={(event) => event.preventDefault()}
               onError={handleImgError}
               onLoad={(e) => {
                 const img = e.currentTarget;

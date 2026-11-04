@@ -155,6 +155,8 @@ export function DefaultBadgeFront({
             <img
               src={currentSrc}
               alt={name}
+              draggable={false}
+              onDragStart={(event) => event.preventDefault()}
               onError={handleImgError}
               onLoad={(e) => {
                 const img = e.currentTarget
