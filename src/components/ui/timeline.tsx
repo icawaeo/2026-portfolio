@@ -62,13 +62,13 @@ export const Timeline = ({ data }: TimelineProps) => {
               <div className="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full bg-stone-50">
                 <div className="h-4 w-4 rounded-full border-2 border-violet-300 bg-violet-100 shadow-[0_0_0_4px_rgb(250_248_255)]" />
               </div>
-              <h3 className="pl-16 pt-1 text-base font-semibold leading-tight tracking-tight text-stone-900 lg:text-lg">
+              <h3 className="pl-16 pt-1 text-4xl font-semibold leading-tight tracking-tight text-stone-500 lg:text-5xl">
                 {item.title}
               </h3>
             </div>
 
             <div className="relative w-full pl-16 pr-1 md:pl-0 md:pr-4">
-              <h3 className="mb-3 text-base font-semibold leading-tight tracking-tight text-stone-900 md:hidden">
+              <h3 className="mb-3 text-2xl font-semibold leading-tight tracking-tight text-stone-500 md:hidden">
                 {item.title}
               </h3>
               {item.content}

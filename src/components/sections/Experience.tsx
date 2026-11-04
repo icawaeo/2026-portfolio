@@ -94,6 +94,10 @@ export default function Experience() {
         <SectionHeading
           title="Where I've Worked."
           subtitle="A timeline of my professional experiences and contributions."
+          align="center"
+          subtitleCentered
+          className="mb-10"
+          titleClassName="!text-4xl !font-semibold sm:!text-5xl lg:!text-6xl"
         />
         <Timeline data={timelineData} />
       </Container>
