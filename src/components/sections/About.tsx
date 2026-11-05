@@ -10,7 +10,7 @@ const statIcons = [GraduationCap, Award, Briefcase];
 
 export default function About() {
   return (
-    <section id="about" className="bg-stone-50/50 py-20 sm:py-28 2xl:py-32">
+    <section id="about" className="bg-stone-50/50 py-20 sm:py-28 2xl:py-32 lg:pb-[18svh]">
       <Container>
         <SectionHeading title="A Little About Me." />
 
