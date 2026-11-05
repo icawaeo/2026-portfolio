@@ -322,6 +322,7 @@ export default function TumbleDeckShowcase({
         .td-project-tag { border: 1px solid rgba(28,25,23,.14); border-radius: 4px; background: rgba(255,255,255,.72); padding: 6px 9px; color: #57534e; font-size: clamp(10px, .9vw, 12px); font-weight: 600; }
         .td-project-highlight { margin-top: 10px; color: #292524; font-size: clamp(12px, 1vw, 15px); font-weight: 600; }
         .td-root:focus-visible { box-shadow: inset 0 0 0 2px var(--color-primary); }
+        @media (min-width: 1024px) and (max-width: 1599px) { .td-project-face { padding: clamp(12px, 1.9vw, 24px); } .td-project-title { font-size: clamp(20px, 2.7vw, 36px); } .td-project-description { font-size: clamp(12px, 1.1vw, 15px); } .td-project-bottom { gap: 7px; margin-top: 14px; } .td-project-tag { padding: 5px 8px; font-size: clamp(10px, .8vw, 11px); } .td-project-highlight { font-size: clamp(11px, .9vw, 13px); } }
         @media (max-width: 520px) { .td-meta { top: 4px; width: calc(100% - 24px); gap: 8px; font-size: clamp(11px, 3vw, 14px); } .td-project-face { padding: 14px; } .td-project-title { font-size: 24px; } .td-project-description { -webkit-line-clamp: 2; font-size: 12px; } .td-project-bottom { gap: 5px; margin-top: 12px; } .td-project-tag { padding: 4px 7px; font-size: 9px; } .td-project-highlight { display: none; } }
       `}</style>
       {activeCard && (
