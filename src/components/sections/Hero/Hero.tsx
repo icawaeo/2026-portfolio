@@ -16,6 +16,7 @@ import {
 import {
   DESKTOP_LANYARD_CONFIG,
   HERO_DESCRIPTION,
+  LAPTOP_LANYARD_CONFIG,
   MOBILE_LANYARD_CONFIG,
   TABLET_LANYARD_CONFIG,
   type LanyardConfig,
@@ -59,6 +60,7 @@ function getLanyardClientSnapshot(): LanyardConfig {
   const width = window.innerWidth;
   if (width < 640) return MOBILE_LANYARD_CONFIG;
   if (width < 1024) return TABLET_LANYARD_CONFIG;
+  if (width < 1600) return LAPTOP_LANYARD_CONFIG;
   return DESKTOP_LANYARD_CONFIG;
 }
 

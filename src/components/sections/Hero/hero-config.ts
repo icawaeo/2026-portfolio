@@ -10,6 +10,12 @@ export const DESKTOP_LANYARD_CONFIG: LanyardConfig = {
   buckleY: 195,
 };
 
+export const LAPTOP_LANYARD_CONFIG: LanyardConfig = {
+  cardWidth: 295,
+  anchorX: 0.73,
+  buckleY: 180,
+};
+
 export const TABLET_LANYARD_CONFIG: LanyardConfig = {
   cardWidth: 230,
   anchorX: 0.5,

@@ -131,7 +131,12 @@ export default function TumbleDeckShowcase({
       const rootHeight = root.clientHeight;
       const cardAspect = rootWidth < 520 ? Math.min(aspect, 1.25) : aspect;
       const widthFraction = rootWidth < 520 ? 0.9 : 0.92;
-      const cardHeight = Math.max(60, Math.min((rootWidth * widthFraction) / cardAspect, rootHeight * 0.9, 620));
+      const heightFraction =
+        window.innerWidth >= 1024 && window.innerWidth < 1600 ? 0.86 : 0.9;
+      const cardHeight = Math.max(
+        60,
+        Math.min((rootWidth * widthFraction) / cardAspect, rootHeight * heightFraction, 620),
+      );
       const cardWidth = cardHeight * cardAspect;
       const top = Math.max(
         44,
@@ -322,7 +327,7 @@ export default function TumbleDeckShowcase({
         .td-project-tag { border: 1px solid rgba(28,25,23,.14); border-radius: 4px; background: rgba(255,255,255,.72); padding: 6px 9px; color: #57534e; font-size: clamp(10px, .9vw, 12px); font-weight: 600; }
         .td-project-highlight { margin-top: 10px; color: #292524; font-size: clamp(12px, 1vw, 15px); font-weight: 600; }
         .td-root:focus-visible { box-shadow: inset 0 0 0 2px var(--color-primary); }
-        @media (min-width: 1024px) and (max-width: 1599px) { .td-project-face { padding: clamp(12px, 1.9vw, 24px); } .td-project-title { font-size: clamp(20px, 2.7vw, 36px); } .td-project-description { font-size: clamp(12px, 1.1vw, 15px); } .td-project-bottom { gap: 7px; margin-top: 14px; } .td-project-tag { padding: 5px 8px; font-size: clamp(10px, .8vw, 11px); } .td-project-highlight { font-size: clamp(11px, .9vw, 13px); } }
+        @media (min-width: 1024px) and (max-width: 1599px) { .td-project-face { padding: clamp(12px, 1.8vw, 22px); } .td-project-title { font-size: clamp(19px, 2.5vw, 32px); } .td-project-description { font-size: clamp(11px, 1vw, 14px); } .td-project-bottom { gap: 6px; margin-top: 12px; } .td-project-tag { padding: 4px 7px; font-size: clamp(9px, .75vw, 10px); } .td-project-highlight { font-size: clamp(10px, .85vw, 12px); } }
         @media (max-width: 520px) { .td-meta { top: 4px; width: calc(100% - 24px); gap: 8px; font-size: clamp(11px, 3vw, 14px); } .td-project-face { padding: 14px; } .td-project-title { font-size: 24px; } .td-project-description { -webkit-line-clamp: 2; font-size: 12px; } .td-project-bottom { gap: 5px; margin-top: 12px; } .td-project-tag { padding: 4px 7px; font-size: 9px; } .td-project-highlight { display: none; } }
       `}</style>
       {activeCard && (

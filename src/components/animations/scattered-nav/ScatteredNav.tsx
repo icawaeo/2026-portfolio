@@ -345,7 +345,7 @@ export default function ScatteredNav() {
         <nav
           ref={navRef}
           aria-label="Main navigation"
-          className="mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-center gap-1 px-2 py-2 sm:min-h-16 sm:gap-1.5 sm:px-4 xl:min-h-20 xl:gap-2.5 xl:px-6"
+          className="laptop-nav mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-center gap-1 px-2 py-2 sm:min-h-16 sm:gap-1.5 sm:px-4 xl:min-h-20 xl:gap-2.5 xl:px-6"
         >
           {NAV_BUTTONS.map((button, index) => (
             <span
