@@ -58,7 +58,7 @@ export const Timeline = ({ data }: TimelineProps) => {
               <div className="h-4 w-4 rounded-full border-2 border-violet-300 bg-violet-100 shadow-[0_0_0_4px_rgb(250_248_255)]" />
             </div>
 
-            <div className="sticky top-28 z-20 hidden h-fit self-start md:w-[38%] md:shrink-0 md:flex md:items-start">
+            <div className="sticky top-28 z-20 hidden h-fit self-start md:w-[38%] md:shrink-0 md:flex md:items-start xl:w-[42%]">
               <div className="absolute left-0 top-1 flex h-10 w-10 items-center justify-center rounded-full bg-stone-50">
                 <div className="h-4 w-4 rounded-full border-2 border-violet-300 bg-violet-100 shadow-[0_0_0_4px_rgb(250_248_255)]" />
               </div>
