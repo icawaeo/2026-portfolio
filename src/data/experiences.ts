@@ -10,12 +10,19 @@ export const experiences: Experience[] = [
     type: 'Internship',
     description: 'Contributed to the development and analysis of operational web-based systems for project management and administrative workflows.',
     highlights: [
-      'Contributed to the development of operational web-based systems.',
-      'Worked on attendance tracking, visitor registration, and project management applications.',
-      'Translated stakeholder requirements into workflows, UML diagrams, and database structures.',
-      'Assisted with system implementation and feature development.',
+      'Developed 3 operational web-based systems for attendance tracking, visitor registration, and land acquisition project management.',
+      'Analyzed stakeholder requirements and documented system workflows, UML diagrams, ERDs, and SRS to guide development.',
+      'Implemented facial verification and geolocation-based attendance features for 45 TAD employees.',
+      'Developed project dashboards, document management, and hierarchical approval workflows supporting 50+ project documents.',
+      'Created user guides and provided application training.',
+      'Provided technical support including printer and scanner installation and configuration.',
     ],
-    technologies: ['Laravel', 'MySQL', 'JavaScript', 'UML', 'Draw.io'],
+    technologies: ['Laravel', 'MySQL', 'JavaScript', 'Microsoft Office', 'Draw.io'],
+    gallery: [
+      { src: '/images/experiences/pln-1.jpeg', alt: 'Dokumentasi magang di PLN' },
+      { src: '/images/experiences/pln-2.jpeg', alt: 'Kegiatan proyek PLN' },
+      { src: '/images/experiences/pln-3.jpeg', alt: 'Kegiatan proyek PLN' },
+],
   },
   {
     id: 'unsrat-lab-assistant',
@@ -27,10 +34,10 @@ export const experiences: Experience[] = [
     description: 'Supported laboratory operations and facilitated academic activities for informatics students.',
     highlights: [
       'Supported laboratory operations and academic activities.',
+      'Managed attendance records and tracked 30+ laboratory assets to maintain accurate inventory and documentation.',
       'Assisted students during practical sessions.',
-      'Managed laboratory assets and administrative documentation.',
     ],
-    technologies: ['Lab Management', 'Documentation', 'Student Mentoring'],
+    technologies: ['Microsoft Office', 'Google Workspace'],
   },
   {
     id: 'db-teaching-assistant',
@@ -41,9 +48,10 @@ export const experiences: Experience[] = [
     type: 'Academic',
     description: 'Assisted in delivering PostgreSQL practical sessions and managed academic administration.',
     highlights: [
-      'Assisted lecturers in delivering PostgreSQL practical sessions.',
-      'Supported academic administration, assignment grading, and score recording.',
+      'Assisted lecturers in conducting Database Technology practical sessions for 50+ students.',
+      'Guided students in database design, SQL queries, data manipulation, and PostgreSQL database management.',
+      'Provided technical guidance and troubleshooting to support students in completing database practical assignments.',
     ],
-    technologies: ['PostgreSQL', 'Database Design', 'SQL'],
+    technologies: ['PostgreSQL', 'Docker', 'SQL'],
   },
 ];
