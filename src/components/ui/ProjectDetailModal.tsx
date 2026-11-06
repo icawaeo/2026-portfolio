@@ -141,7 +141,7 @@ export default function ProjectDetailModal({
               type="button"
               onClick={onClose}
               aria-label="Close project details"
-              className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-stone-200 bg-white/90 text-stone-600 shadow-sm transition hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-700 sm:right-6 sm:top-6"
+              className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white/90 text-stone-600 shadow-sm transition hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-700 sm:right-6 sm:top-6 sm:h-9 sm:w-9"
             >
               <X className="h-4 w-4" />
             </button>

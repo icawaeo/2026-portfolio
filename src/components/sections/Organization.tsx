@@ -8,7 +8,7 @@ import { organizations } from '@/data/organizations';
 
 export default function Organization() {
   return (
-    <section id="activities" className="bg-stone-50/50 py-20 sm:py-28 2xl:py-32">
+    <section id="activities" className="bg-stone-50/50 py-14 sm:py-28 2xl:py-32">
       <Container>
         <SectionHeading
           title="Beyond the Classroom."

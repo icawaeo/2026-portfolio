@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import {
+  AnimatePresence,
   motion,
   useScroll,
   useTransform,
   type MotionValue,
 } from 'motion/react';
+import { Menu, X } from 'lucide-react';
 import { NAV_BUTTONS, type NavButtonConfig } from './nav-config';
 
 interface Offset {
@@ -169,6 +171,8 @@ export default function ScatteredNav() {
   const [navVisible, setNavVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [activeHref, setActiveHref] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileNavSettled, setMobileNavSettled] = useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
@@ -181,6 +185,40 @@ export default function ScatteredNav() {
     mediaQuery.addEventListener('change', updatePreference);
     return () => mediaQuery.removeEventListener('change', updatePreference);
   }, []);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileMenuOpen(false);
+    };
+    const closeOnDesktop = (event: MediaQueryListEvent) => {
+      if (event.matches) setMobileMenuOpen(false);
+    };
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+
+    window.addEventListener('keydown', closeOnEscape);
+    desktopQuery.addEventListener('change', closeOnDesktop);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', closeOnEscape);
+      desktopQuery.removeEventListener('change', closeOnDesktop);
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const updateSettledState = (progress: number) => {
+      setMobileNavSettled((current) => {
+        const next = progress >= 0.94;
+        return current === next ? current : next;
+      });
+    };
+
+    updateSettledState(scrollYProgress.get());
+    return scrollYProgress.on('change', updateSettledState);
+  }, [scrollYProgress]);
 
   useEffect(() => {
     const headings = NAV_BUTTONS.map((button) => ({
@@ -319,7 +357,7 @@ export default function ScatteredNav() {
 
           <p
             aria-label="I make buttons look clickable."
-            className="pointer-events-none relative z-0 mx-auto max-w-[90vw] select-none text-center text-[clamp(2.7rem,8vw,8rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-stone-950 sm:max-w-[88vw]"
+            className="pointer-events-none relative z-0 mx-auto max-w-[90vw] select-none text-center text-[clamp(2.25rem,8vw,8rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-stone-950 sm:max-w-[88vw]"
           >
             <TaglineWord word="I" index={0} progress={scrollYProgress} prefersReducedMotion={prefersReducedMotion} />{' '}
             <TaglineWord word="make" index={1} progress={scrollYProgress} prefersReducedMotion={prefersReducedMotion} />{' '}
@@ -345,12 +383,12 @@ export default function ScatteredNav() {
         <nav
           ref={navRef}
           aria-label="Main navigation"
-          className="laptop-nav mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-center gap-1 px-2 py-2 sm:min-h-16 sm:gap-1.5 sm:px-4 xl:min-h-20 xl:gap-2.5 xl:px-6"
+          className="laptop-nav mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-end gap-1 overflow-x-clip px-3 py-1.5 sm:min-h-16 sm:gap-1.5 sm:px-4 sm:py-2 md:justify-center xl:min-h-20 xl:gap-2.5 xl:px-6"
         >
           {NAV_BUTTONS.map((button, index) => (
             <span
               key={button.label}
-              className="inline-flex"
+              className={mobileNavSettled ? 'hidden md:inline-flex' : 'inline-flex'}
               ref={(element) => {
                 const anchor = element?.querySelector('a') ?? null;
                 buttonRefs.current[index] = anchor;
@@ -367,7 +405,50 @@ export default function ScatteredNav() {
               />
             </span>
           ))}
+          <button
+            type="button"
+            className={`${mobileNavSettled ? 'inline-flex' : 'hidden'} h-11 w-11 items-center justify-center rounded-full border border-stone-300 bg-white/80 text-stone-800 shadow-sm transition-colors hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-700 md:hidden`}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-main-navigation"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </nav>
+        <AnimatePresence>
+          {mobileMenuOpen && navVisible && (
+            <motion.nav
+              id="mobile-main-navigation"
+              aria-label="Mobile navigation"
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -8 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.18 }}
+              className="absolute inset-x-0 top-full max-h-[calc(100svh-4rem)] overflow-y-auto border-b border-stone-200 bg-stone-50/95 px-4 pb-4 pt-2 shadow-lg backdrop-blur-xl md:hidden"
+            >
+              <ul className="mx-auto grid max-w-md grid-cols-2 gap-2">
+                {NAV_BUTTONS.map((button) => (
+                  <li key={button.label}>
+                    <a
+                      href={button.href}
+                      aria-current={activeHref === button.href ? 'location' : undefined}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setActiveHref(button.href);
+                        setMobileMenuOpen(false);
+                        scrollToSection(button.href);
+                      }}
+                      className="flex min-h-12 items-center rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm font-semibold text-stone-800 transition-colors hover:border-stone-300 hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-700"
+                    >
+                      {button.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </motion.header>
     </>
   );

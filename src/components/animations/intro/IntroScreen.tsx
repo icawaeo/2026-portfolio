@@ -111,7 +111,7 @@ export default function IntroScreen({
           <div className="flex flex-col items-center">
             <h1
               aria-label="Hello, I'm Veronica Waeo."
-              className="flex max-w-4xl flex-wrap justify-center gap-x-[0.24em] gap-y-1 text-4xl font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-7xl"
+              className="flex max-w-4xl flex-wrap justify-center gap-x-[0.24em] gap-y-1 text-[clamp(2rem,10vw,3rem)] font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-7xl"
             >
               {GREETING.map((word, index) => (
                 <motion.span

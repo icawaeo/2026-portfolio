@@ -9,7 +9,7 @@ import { volunteerActivities } from '@/data/volunteer';
 export default function Volunteer() {
   if (volunteerActivities.length === 0) {
     return (
-      <section id="volunteer" className="py-20 sm:py-28">
+      <section id="volunteer" className="py-14 sm:py-28">
         <Container>
           <SectionHeading
             title="Giving Back & Getting Involved."
@@ -38,7 +38,7 @@ export default function Volunteer() {
   }
 
   return (
-    <section id="volunteer" className="py-20 sm:py-28">
+    <section id="volunteer" className="py-14 sm:py-28">
       <Container>
         <SectionHeading
           title="Giving Back & Getting Involved."

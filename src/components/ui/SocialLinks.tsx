@@ -76,7 +76,7 @@ export default function SocialLinks({ links, size = 'md', className = '' }: Soci
             href={link.url}
             target={link.url.startsWith('mailto:') ? undefined : '_blank'}
             rel={link.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-200 text-stone-500 transition-all duration-300 hover:border-stone-400 hover:text-stone-900 hover:bg-stone-50 hover:scale-105 active:scale-95"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 text-stone-500 transition-all duration-300 hover:border-stone-400 hover:text-stone-900 hover:bg-stone-50 hover:scale-105 active:scale-95 sm:h-10 sm:w-10"
             aria-label={link.platform}
           >
             <Icon className={iconSizes[size]} />

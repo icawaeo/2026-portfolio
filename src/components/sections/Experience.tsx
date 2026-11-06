@@ -8,7 +8,7 @@ export default function Experience() {
   const timelineData = experiences.map((experience, index) => ({
     title: experience.period,
     content: (
-      <article className={index === experiences.length - 1 ? 'pb-[30svh]' : 'pb-8'}>
+      <article className={index === experiences.length - 1 ? 'pb-16 sm:pb-[18svh] lg:pb-[30svh]' : 'pb-8'}>
         <div className="flex items-center gap-3 xl:gap-4">
           <span className="relative size-12 shrink-0 xl:size-14 2xl:size-16">
             {experience.logo && (
@@ -104,7 +104,7 @@ export default function Experience() {
   }));
 
   return (
-    <section id="experience" className="relative z-0 isolate py-20 sm:py-28 2xl:py-32">
+    <section id="experience" className="relative z-0 isolate py-14 sm:py-28 2xl:py-32">
       <Container>
         <SectionHeading
           title="Where I've Worked."

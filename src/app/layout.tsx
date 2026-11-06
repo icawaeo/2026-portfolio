@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist_Mono, Montserrat } from 'next/font/google';
+import { MotionConfig } from 'motion/react';
 import InteractiveFrames from '@/components/animations/interactive-frames';
 import './globals.css';
 
@@ -64,8 +65,10 @@ export default function RootLayout({
         suppressHydrationWarning
         className="min-h-screen bg-stone-50/30 text-stone-900 font-sans"
       >
-        <InteractiveFrames />
-        <div className="relative z-10">{children}</div>
+        <MotionConfig reducedMotion="user">
+          <InteractiveFrames />
+          <div className="relative z-10">{children}</div>
+        </MotionConfig>
       </body>
     </html>
   );

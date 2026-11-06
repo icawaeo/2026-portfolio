@@ -27,7 +27,7 @@ export default function SectionHeading({
       transition={{ duration: 0.5 }}
       className={`${className} ${align === 'center' ? 'text-center' : ''}`}
     >
-      <h2 className={`text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl lg:text-5xl 2xl:text-6xl ${titleClassName}`}>
+      <h2 className={`text-[clamp(1.75rem,7vw,2.25rem)] font-bold leading-tight tracking-tight text-stone-900 sm:text-4xl lg:text-5xl 2xl:text-6xl ${titleClassName}`}>
         {title}
       </h2>
       {subtitle && (

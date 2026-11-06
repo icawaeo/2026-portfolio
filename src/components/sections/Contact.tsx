@@ -10,7 +10,7 @@ import { personalInfo } from '@/data/personal';
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-stone-50/50">
+    <section id="contact" className="bg-stone-50/50 py-14 sm:py-28">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <SectionHeading

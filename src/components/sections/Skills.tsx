@@ -5,7 +5,7 @@ import { skillCategories } from '@/data/skills';
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 sm:py-28">
+    <section id="skills" className="py-14 sm:py-28">
       <Container>
         <SectionHeading
           title="What I Bring to the Table."

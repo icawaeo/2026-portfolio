@@ -17,15 +17,15 @@ export const LAPTOP_LANYARD_CONFIG: LanyardConfig = {
 };
 
 export const TABLET_LANYARD_CONFIG: LanyardConfig = {
-  cardWidth: 230,
-  anchorX: 0.5,
-  buckleY: 180,
+  cardWidth: 170,
+  anchorX: 0.65,
+  buckleY: 540,
 };
 
 export const MOBILE_LANYARD_CONFIG: LanyardConfig = {
-  cardWidth: 200,
-  anchorX: 0.5,
-  buckleY: 370,
+  cardWidth: 150,
+  anchorX: 0.6,
+  buckleY: 570,
 };
 
 export const HERO_DESCRIPTION =

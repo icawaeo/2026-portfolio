@@ -49,7 +49,7 @@ export function NotchedProjectCard({
   className,
 }: NotchedProjectCardProps) {
   const tone = monochrome
-    ? "grayscale transition-[filter,scale] duration-500 group-hover:grayscale-0 group-focus-visible:grayscale-0"
+    ? "grayscale transition-[filter,scale] duration-500 group-hover:grayscale-0 group-focus-visible:grayscale-0 group-active:grayscale-0"
     : "transition-[scale] duration-500";
   const cardClassName = cn(
     "group flex flex-col rounded-[28px] outline-none",

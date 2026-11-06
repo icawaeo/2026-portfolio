@@ -118,7 +118,7 @@ export default function Hero() {
     <section
       id="home"
       suppressHydrationWarning
-      className="relative min-h-[850px] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
+      className="relative min-h-[900px] lg:min-h-screen flex items-center pt-24 pb-16 overflow-hidden"
     >
       {/* Editorial background ambient shapes */}
       <div
@@ -185,13 +185,13 @@ export default function Hero() {
 
       {/* ───────────── Hero Content Container (z-20) ───────────── */}
       {/*
-        Sits in front of the lanyard badge (z-20 vs z-10).
+        Sits in front of the lanyard badge (z-30 vs z-10).
         Text & CTA buttons remain fully readable and interactive as the card moves around/behind them.
       */}
-      <Container className="relative z-20 pointer-events-none w-full">
+      <Container className="relative z-30 pointer-events-none w-full">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-8">
           {/* Left Column: Introduction & CTAs (~58% on desktop) */}
-          <div className="lg:col-span-7 flex flex-col justify-center pointer-events-auto">
+          <div className="pointer-events-auto flex flex-col justify-center rounded-2xl bg-stone-50/80 p-3 shadow-sm backdrop-blur-sm sm:rounded-none sm:bg-transparent sm:p-0 sm:shadow-none sm:backdrop-blur-none lg:col-span-7">
             {/* Availability indicator */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -199,7 +199,7 @@ export default function Hero() {
                 introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
               }
               transition={{ duration: reducedMotion ? 0 : 0.5 }}
-              className="mb-6 inline-flex"
+              className="mb-2 inline-flex sm:mb-6"
             >
               {/* <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3.5 py-1.5 text-xs font-semibold text-emerald-800 shadow-2xs backdrop-blur-xs">
                 <span className="relative flex h-2 w-2">
@@ -233,12 +233,12 @@ export default function Hero() {
                 introComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
               }
               transition={{ duration: reducedMotion ? 0 : 0.6 }}
-              className="text-3xl font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-[clamp(4.5rem,5.2vw,6.25rem)]"
+              className="text-[clamp(1.75rem,8.5vw,3rem)] font-extrabold tracking-tight text-stone-900 sm:text-6xl lg:text-[clamp(4.5rem,5.2vw,6.25rem)]"
             >
               <motion.span
                 layoutId="portfolio-veronica-name"
                 aria-hidden="true"
-                className="inline-flex origin-left -rotate-[5deg] whitespace-nowrap bg-yellow-500 px-5 py-2 text-white shadow-[8px_8px_0_rgba(234,179,8,0.35)] ring-1 ring-white/70 sm:px-6 sm:py-2.5"
+                className="inline-flex origin-left -rotate-[5deg] whitespace-nowrap bg-yellow-500 px-3 py-2 text-white shadow-[8px_8px_0_rgba(234,179,8,0.35)] ring-1 ring-white/70 sm:px-6 sm:py-2.5"
               >
                 {heroName}
               </motion.span>
@@ -264,7 +264,7 @@ export default function Hero() {
                 duration: reducedMotion ? 0 : 0.5,
                 delay: reducedMotion ? 0 : 0.5,
               }}
-              className="mt-15 min-h-[8.125em] max-w-2xl text-base leading-relaxed text-black-500 sm:min-h-[5em] sm:text-lg xl:text-xl"
+              className="mt-8 min-h-[6em] max-w-2xl text-base leading-relaxed text-black-500 sm:mt-15 sm:min-h-[5em] sm:text-lg xl:text-xl"
               aria-label={heroDescription}
             >
               <span aria-hidden="true">{typedDescription}</span>
