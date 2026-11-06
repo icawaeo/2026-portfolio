@@ -67,6 +67,8 @@ export interface Organization {
   role: string;
   period: string;
   description: string;
+  image: string;
+  imageAlt: string;
   contributions: string[];
 }
 
