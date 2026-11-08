@@ -1,10 +1,19 @@
+'use client';
+
+import { useState } from 'react';
 import Container from '@/components/shared/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
+import ProjectDetailModal from '@/components/ui/ProjectDetailModal';
 import { Timeline } from '@/components/ui/timeline';
 import { experiences } from '@/data/experiences';
 import Image from 'next/image';
 
 export default function Experience() {
+  const [selectedGallery, setSelectedGallery] = useState<{
+    images: { src: string; alt: string }[];
+    activeIndex: number;
+  } | null>(null);
+
   const timelineData = experiences.map((experience, index) => ({
     title: experience.period,
     content: (
@@ -65,40 +74,35 @@ export default function Experience() {
           </div>
         </div>
 
-        <div
-          aria-label={`${experience.organization} photos`}
-          className="mt-4 grid grid-cols-2 gap-3 sm:gap-4"
-        >
-          {Array.from(
-            { length: Math.max(4, experience.gallery?.length ?? 0) },
-            (_, index) => {
-              const photo = experience.gallery?.[index];
-
-              return (
-                <div
-                  key={photo?.src ?? `${experience.id}-photo-${index}`}
-                  className="relative aspect-[2/1] overflow-hidden bg-stone-200"
-                >
-                  {photo ? (
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      sizes="(max-width: 640px) 40vw, (max-width: 1024px) 28vw, 22vw"
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div
-                      role="img"
-                      aria-label={`Photo ${index + 1} placeholder`}
-                      className="h-full w-full"
-                    />
-                  )}
-                </div>
-              );
-            },
-          )}
-        </div>
+        {experience.gallery && experience.gallery.length > 0 && (
+          <div
+            role="group"
+            aria-label={`${experience.organization} photos`}
+            className="mt-4 grid grid-cols-2 gap-3 sm:gap-4"
+          >
+            {experience.gallery.map((photo, photoIndex) => (
+              <button
+                key={photo.src}
+                type="button"
+                aria-label={`View ${photo.alt}`}
+                onClick={() =>
+                  setSelectedGallery({ images: experience.gallery ?? [], activeIndex: photoIndex })
+                }
+                className="group relative aspect-[2/1] overflow-hidden bg-stone-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600"
+              >
+                <span className="relative block h-full w-full">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    sizes="(max-width: 640px) 40vw, (max-width: 1024px) 28vw, 22vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
       </article>
     ),
   }));
@@ -116,6 +120,26 @@ export default function Experience() {
         />
         <Timeline data={timelineData} />
       </Container>
+      <ProjectDetailModal
+        project={null}
+        experienceGallery={
+          selectedGallery
+            ? {
+                ...selectedGallery,
+                onNext: () =>
+                  setSelectedGallery((current) =>
+                    current
+                      ? {
+                          ...current,
+                          activeIndex: (current.activeIndex + 1) % current.images.length,
+                        }
+                      : current,
+                  ),
+              }
+            : undefined
+        }
+        onClose={() => setSelectedGallery(null)}
+      />
     </section>
   );
 }

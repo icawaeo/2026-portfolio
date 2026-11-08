@@ -3,13 +3,19 @@
 import { useId, useLayoutEffect, useRef, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowUpRight, CheckCircle2, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, CheckCircle2, X } from 'lucide-react';
+import Image from 'next/image';
 import ProjectGallery from '@/components/ui/ProjectGallery';
 import type { Project, ProjectDetail } from '@/types/portfolio';
 
 interface ProjectDetailModalProps {
   project: Project | null;
   detail?: ProjectDetail;
+  experienceGallery?: {
+    images: { src: string; alt: string }[];
+    activeIndex: number;
+    onNext: () => void;
+  };
   onClose: () => void;
 }
 
@@ -28,6 +34,7 @@ function getServerSnapshot() {
 export default function ProjectDetailModal({
   project,
   detail,
+  experienceGallery,
   onClose,
 }: ProjectDetailModalProps) {
   const mounted = useSyncExternalStore(subscribeToNothing, getClientSnapshot, getServerSnapshot);
@@ -35,9 +42,10 @@ export default function ProjectDetailModal({
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
   const summaryId = useId();
+  const isOpen = Boolean((project && detail) || experienceGallery);
 
   useLayoutEffect(() => {
-    if (!project || !mounted) return;
+    if (!isOpen || !mounted) return;
 
     const body = document.body;
     const html = document.documentElement;
@@ -70,7 +78,7 @@ export default function ProjectDetailModal({
       window.scrollTo(0, scrollY);
       previousFocus?.focus();
     };
-  }, [project, mounted]);
+  }, [isOpen, mounted]);
 
   const onDialogKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Escape') {
@@ -109,9 +117,9 @@ export default function ProjectDetailModal({
 
   return createPortal(
     <AnimatePresence>
-      {project && detail ? (
+      {(project && detail) || experienceGallery ? (
         <motion.div
-          key={project.id}
+          key={experienceGallery ? 'experience-gallery' : project?.id}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-stone-950/65 p-0 backdrop-blur-sm sm:p-4 lg:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -125,11 +133,16 @@ export default function ProjectDetailModal({
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-labelledby={titleId}
-            aria-describedby={summaryId}
+            aria-label={experienceGallery ? 'Experience photo gallery' : undefined}
+            aria-labelledby={experienceGallery ? undefined : titleId}
+            aria-describedby={experienceGallery ? undefined : summaryId}
             tabIndex={-1}
             onKeyDown={onDialogKeyDown}
-            className="relative grid h-[100svh] max-h-[100svh] w-full grid-rows-[minmax(0,0.85fr)_minmax(0,1.15fr)] overflow-hidden bg-white text-stone-900 shadow-2xl outline-none sm:h-[88svh] sm:max-h-[900px] sm:rounded-[24px] lg:max-w-[1320px] lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:grid-rows-1"
+            className={
+              experienceGallery
+                ? 'relative flex h-[100svh] max-h-[100svh] w-full flex-col overflow-hidden bg-stone-950 text-white shadow-2xl outline-none sm:h-[88svh] sm:max-h-[900px] sm:rounded-[24px] lg:max-w-[1320px]'
+                : 'relative grid h-[100svh] max-h-[100svh] w-full grid-rows-[minmax(0,0.85fr)_minmax(0,1.15fr)] overflow-hidden bg-white text-stone-900 shadow-2xl outline-none sm:h-[88svh] sm:max-h-[900px] sm:rounded-[24px] lg:max-w-[1320px] lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:grid-rows-1'
+            }
             initial={{ opacity: 0, scale: 0.98, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.985, y: 8 }}
@@ -140,13 +153,41 @@ export default function ProjectDetailModal({
               ref={closeButtonRef}
               type="button"
               onClick={onClose}
-              aria-label="Close project details"
-              className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white/90 text-stone-600 shadow-sm transition hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-700 sm:right-6 sm:top-6 sm:h-9 sm:w-9"
+              aria-label={experienceGallery ? 'Close photo gallery' : 'Close project details'}
+              className={`absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full shadow-sm transition focus-visible:outline-2 focus-visible:outline-offset-2 sm:right-6 sm:top-6 sm:h-9 sm:w-9 ${
+                experienceGallery
+                  ? 'border border-white/20 bg-stone-900/70 text-white hover:bg-stone-800 focus-visible:outline-white'
+                  : 'border border-stone-200 bg-white/90 text-stone-600 hover:bg-stone-100 focus-visible:outline-stone-700'
+              }`}
             >
               <X className="h-4 w-4" />
             </button>
 
-            <div className="min-h-0 overflow-y-auto overscroll-contain px-6 pb-7 pt-14 sm:px-9 sm:pb-9 sm:pt-16 lg:px-11 lg:pb-10 lg:pt-12">
+            {experienceGallery ? (
+              <>
+                <div className="relative flex min-h-0 flex-1 items-center justify-center p-4 sm:p-8">
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={experienceGallery.images[experienceGallery.activeIndex].src}
+                      alt={experienceGallery.images[experienceGallery.activeIndex].alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 90vw"
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={experienceGallery.onNext}
+                  disabled={experienceGallery.images.length < 2}
+                  className="absolute bottom-5 right-5 z-20 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-stone-900 shadow-lg transition hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-50 sm:bottom-7 sm:right-7"
+                >
+                  Next <ArrowRight className="h-4 w-4" />
+                </button>
+              </>
+            ) : project && detail ? (
+              <>
+                <div className="min-h-0 overflow-y-auto overscroll-contain px-6 pb-7 pt-14 sm:px-9 sm:pb-9 sm:pt-16 lg:px-11 lg:pb-10 lg:pt-12">
               <div className="mb-5 flex flex-wrap items-center gap-2">
                 <span className="rounded-full bg-stone-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-stone-600">
                   {project.categoryFilter}
@@ -218,21 +259,23 @@ export default function ProjectDetailModal({
                   Visit project <ArrowUpRight className="h-4 w-4" />
                 </a>
               )}
-            </div>
-
-            <div className="flex min-h-0 flex-col border-t border-stone-100 bg-stone-50/70 px-4 pb-4 pt-3 sm:px-6 sm:pb-6 sm:pt-5 lg:border-l lg:border-t-0 lg:px-6 lg:pb-6 lg:pt-6">
-              <div className="mb-3 flex shrink-0 items-center justify-between pr-12">
-                <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-700">
-                    Project gallery
-                  </h3>
-                  <p className="mt-1 text-[11px] text-stone-400">
-                    {detail.gallery.length} screens · scroll to explore
-                  </p>
                 </div>
-              </div>
-              <ProjectGallery images={detail.gallery} projectTitle={project.title} />
-            </div>
+
+                <div className="flex min-h-0 flex-col border-t border-stone-100 bg-stone-50/70 px-4 pb-4 pt-3 sm:px-6 sm:pb-6 sm:pt-5 lg:border-l lg:border-t-0 lg:px-6 lg:pb-6 lg:pt-6">
+                  <div className="mb-3 flex shrink-0 items-center justify-between pr-12">
+                    <div>
+                      <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-700">
+                        Project gallery
+                      </h3>
+                      <p className="mt-1 text-[11px] text-stone-400">
+                        {detail.gallery.length} screens · scroll to explore
+                      </p>
+                    </div>
+                  </div>
+                  <ProjectGallery images={detail.gallery} projectTitle={project.title} />
+                </div>
+              </>
+            ) : null}
           </motion.section>
         </motion.div>
       ) : null}

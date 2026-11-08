@@ -16,10 +16,15 @@ export const experiences: Experience[] = [
       'Created EVT user guide for the UNITY 2026 Chairperson Election to help users understand the voting process.',
     ],
     technologies: ['Figma', 'Notion', 'ClickUp', 'Maze'],
+    gallery: [
+      { src: '/images/projects/web-evt.png', alt: 'E-Voting Admin Dashboard' },
+      { src: '/images/projects/mob-evt.jpg', alt: 'E-Voting Mobile App' },
+    ],
   },
   {
     id: 'tempang-tiga',
     position: 'Fullstack Developer',
+    logo: '/images/experiences/logo/logo-minahasa.png',
     organization: 'Tempang Tiga, Langowan Utara, Minahasa, North Sulawesi ',
     period: 'October 2025',
     type: 'Project',
@@ -32,7 +37,7 @@ export const experiences: Experience[] = [
     technologies: ['Laravel', 'Tailwind CSS', 'MySQL', 'JavaScript', 'Draw.io'],
     gallery: [
       { src: '/images/projects/web-desa.png', alt: 'Tempang Tiga village website' },
-      { src: '/images/experiences/tempang-2.jpeg', alt: 'Village website dashboard' },
+      { src: '/images/experiences/village-officials.jpeg', alt: 'Village website dashboard' },
     ],
   },
   {
@@ -62,7 +67,7 @@ export const experiences: Experience[] = [
   {
     id: 'unsrat-lab-assistant',
     position: 'Laboratory Assistant',
-    logo: '/images/logo-lab.png',
+    logo: '/images/experiences/logo/logo-lab.png',
     organization: 'UNSRAT Informatics Laboratory',
     period: 'February 2025 – July 2026',
     type: 'Part-time',
@@ -97,7 +102,7 @@ export const experiences: Experience[] = [
   {
     id: 'db-teaching-assistant',
     position: 'Lecturer Assistant – Database Technology',
-    logo: '/images/logo-unsrat.png',
+    logo: '/images/experiences/logo/logo-unsrat.png',
     organization: 'Sam Ratulangi University',
     period: 'May 2024 – November 2024',
     type: 'Academic',
