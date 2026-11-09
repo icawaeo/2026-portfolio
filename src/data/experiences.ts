@@ -43,7 +43,7 @@ export const experiences: Experience[] = [
   {
     id: 'pln-intern',
     position: 'Fullstack Developer (IT Intern)',
-    logo: '/images/logo-pln.png',
+    logo: '/images/experiences/logo/logo-pln.png',
     organization: 'PT PLN (Persero) – Unit Pelaksana Proyek Sulawesi Utara',
     period: 'June 2025 – August 2025',
     type: 'Internship',

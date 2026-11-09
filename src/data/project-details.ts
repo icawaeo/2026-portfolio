@@ -140,20 +140,45 @@ function createGallery(
 
 export const projectDetails: Record<string, ProjectDetail> = {
   'pwa-room-reservation': {
-    role: 'UI/UX Designer · System Analyst · Web Developer',
+    role: 'Full Stack Developer · UI/UX Designer',
     problem:
       'Room bookings were difficult to coordinate across schedules, and users had limited visibility into room availability.',
     goal:
       'Create an installable, responsive reservation experience that makes availability and booking status easy to understand.',
     contribution:
       'Mapped the reservation flow, designed the interface, and built the PWA experience with resilient online and offline states.',
-    gallery: createGallery('Room Reservation', '#0e7490', [
-      'Reservation dashboard',
-      'Mobile booking flow',
-      'Room availability calendar',
-      'Booking request details',
-      'Offline reservation status',
-    ]),
+    gallery: [
+      {
+        src: '/images/projects/web-reservasi/web-reservasi.png',
+        alt: 'Room Reservation Landing Page',
+        caption: 'Room Reservation Landing Page',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-reservasi/web-reservasi-2.png',
+        alt: 'Room Availability List',
+        caption: 'Room Availability List',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-reservasi/web-reservasi-3.png',
+        alt: 'Reservation Confirmation Form',
+        caption: 'Reservation Confirmation Form',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-reservasi/web-reservasi-superadmin.png',
+        alt: 'Superadmin Dashboard',
+        caption: 'Superadmin Dashboard',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-reservasi/web-approval-admin.png',
+        alt: 'Admin Approval Management',
+        caption: 'Admin Approval Management',
+        aspectRatio: '2 / 1',
+      },
+    ],
   },
   'd-landrow': {
     role: 'System Analyst · Web Developer',
@@ -163,13 +188,38 @@ export const projectDetails: Record<string, ProjectDetail> = {
       'Organize project, parcel, and workflow information in one management interface for operational teams.',
     contribution:
       'Translated operational requirements into system workflows and implemented project-management screens and data views.',
-    gallery: createGallery('D-LANDROW', '#0e7490', [
-      'Project portfolio overview',
-      'Field project summary',
-      'Land parcel register',
-      'Acquisition workflow',
-      'Progress and document tracking',
-    ]),
+    gallery: [
+      {
+        src: '/images/projects/web-dlandrow/web-dlandrow.png',
+        alt: 'D-LANDROW Login Page',
+        caption: 'D-LANDROW Login Page',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-dlandrow/web-dlandrow-project-dashboard.png',
+        alt: 'Project Dashboard',
+        caption: 'Project Dashboard',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-dlandrow/web-dlandrow-admin-review.png',
+        alt: 'Admin Review Interface',
+        caption: 'Admin Review Interface',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-dlandrow/web-dlandrow-admin-approval.png',
+        alt: 'Admin Approval Interface',
+        caption: 'Admin Approval Interface',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/web-dlandrow/web-dlandrow-status.png',
+        alt: 'D-LANDROW project status screen',
+        caption: 'Project Status Tracking',
+        aspectRatio: '2 / 1',
+      },
+    ],
   },
   'attendance-tracking': {
     role: 'System Analyst · Web Developer',
@@ -179,13 +229,14 @@ export const projectDetails: Record<string, ProjectDetail> = {
       'Provide a simple attendance workflow with location-aware check-ins and a clear administrative overview.',
     contribution:
       'Designed the check-in and review flows, then implemented the web interface and geolocation-based verification.',
-    gallery: createGallery('Attendance Tracking', '#b45309', [
-      'Attendance overview',
-      'Mobile check-in',
-      'Daily attendance records',
-      'Location verification',
-      'Attendance report',
-    ]),
+    gallery: [
+      {
+        src: '/images/projects/web-attendance/web-attendance.png',
+        alt: 'D-LANDROW Login Page',
+        caption: 'D-LANDROW Login Page',
+        aspectRatio: '2 / 1',
+      },
+    ]
   },
   'visitor-registration': {
     role: 'UI/UX Designer · Web Developer',
@@ -211,13 +262,20 @@ export const projectDetails: Record<string, ProjectDetail> = {
       'Explore a supportive mobile experience with low-friction check-ins and guided calming activities.',
     contribution:
       'Developed the concept, mapped key user journeys, and designed mobile screens for check-ins, breathing, and voice support.',
-    gallery: createGallery('CALMIE', '#be123c', [
-      'Daily wellbeing check-in',
-      'Guided breathing exercise',
-      'Grounding activity library',
-      'Voice support flow',
-      'Personal wellbeing overview',
-    ]),
+    gallery: [
+      {
+        src: '/images/projects/mob-calmie/mob-calmie-exercise.png',
+        alt: 'Breathe Exercise Screens',
+        caption: 'Breathe Exercise Screens',
+        aspectRatio: '2 / 1',
+      },
+      {
+        src: '/images/projects/mob-calmie/mob-calmie-chat.png',
+        alt: 'CALMIE ChatBot, Overview, and Achievements Screens',
+        caption: 'CALMIE ChatBot, Overview, and Achievements Screens',
+        aspectRatio: '2 / 1',
+      },
+    ],
   },
   'e-voting-unity': {
     role: 'UI/UX Designer',
@@ -227,12 +285,49 @@ export const projectDetails: Record<string, ProjectDetail> = {
       'Design an accessible voting flow for both voters and election administrators.',
     contribution:
       'Designed the information architecture, voter journey, ballot review, and supporting election-management screens.',
-    gallery: createGallery('EVT · UNITY', '#7c3aed', [
-      'Election landing page',
-      'Mobile candidate list',
-      'Candidate profile and ballot',
-      'Vote review and confirmation',
-      'Election administration dashboard',
-    ]),
+    gallery: [  
+      {
+        src: '/images/projects/e-voting/mob-evt-voting.png',
+        alt: 'Mobile Voting Interface',
+        caption: 'Mobile Voting Interface',
+        aspectRatio: '1920 / 1080',
+      },
+      {
+        src: '/images/projects/e-voting/web-evt-add.png',
+        alt: 'Add Election Form',
+        caption: 'Add Election Form',
+        aspectRatio: '1728 / 2080',
+      },
+      {
+        src: '/images/projects/e-voting/web-evt-countdown.png',
+        alt: 'Election Countdown',
+        caption: 'Election Countdown',
+        aspectRatio: '1728 / 1117',
+      },
+      {
+        src: '/images/projects/e-voting/web-evt-dashboard.png',
+        alt: 'Admin Dashboard',
+        caption: 'Admin Dashboard',
+        aspectRatio: '1728 / 1117',
+      },
+      {
+        src: '/images/projects/e-voting/web-evt-monitoring.png',
+        alt: 'EVT UNITY election monitoring',
+        caption: 'Election Monitoring',
+        aspectRatio: '1728 / 1353',
+      },
+      {
+        src: '/images/projects/e-voting/web-evt-recap.png',
+        alt: 'EVT UNITY election recap',
+        caption: 'Election Overview',
+        aspectRatio: '1728 / 1117',
+      },
+      {
+        src: '/images/projects/e-voting/web-evt-tps-list.png',
+        alt: 'EVT UNITY polling station list',
+        caption: 'Polling Station List',
+        aspectRatio: '1728 / 1117',
+      },
+    ],
   },
 };

@@ -5,11 +5,12 @@ export const projects: Project[] = [
     id: 'pwa-room-reservation',
     title: 'PWA Room Reservation System',
     year: 2026,
-    category: 'Web Development / System Analysis',
+    category: 'Web Development & System Analysis',
     categoryFilter: 'Web Development',
     description: 'Progressive Web App for room reservation management at the Faculty of Engineering, Sam Ratulangi University.',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma', 'Firebase'],
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Prisma ORM', 'FCM', 'Selenium', 'Google Lighthouse'],
     highlight: 'Lighthouse score of 100 in Cache Online and Cache Offline scenarios.',
+    imageUrl: '/images/projects/web-reservasi/web-reservasi.png',
   },
   {
     id: 'd-landrow',
@@ -19,6 +20,7 @@ export const projects: Project[] = [
     categoryFilter: 'System Analysis',
     description: 'Land acquisition and right-of-way project management system developed during the PLN internship.',
     technologies: ['Laravel', 'Tailwind CSS', 'MySQL'],
+    imageUrl: '/images/projects/web-dlandrow/web-dlandrow.png',
   },
   {
     id: 'attendance-tracking',
@@ -28,6 +30,7 @@ export const projects: Project[] = [
     categoryFilter: 'Web Development',
     description: 'Web-based attendance system with geolocation and camera-based verification.',
     technologies: ['Laravel', 'MySQL', 'HTML5 Geolocation API'],
+    imageUrl: '/images/projects/web-attendance/web-attendance.png',
   },
   {
     id: 'visitor-registration',
@@ -46,6 +49,7 @@ export const projects: Project[] = [
     categoryFilter: 'UI/UX Design',
     description: 'Mobile application concept designed to support users experiencing anxiety and panic attacks.',
     technologies: ['Figma', 'FigJam', 'Azure Speech-to-Text', 'Gemini API'],
+    imageUrl: '/images/projects/mob-calmie/mob-calmie.png',
   },
   {
     id: 'e-voting-unity',
@@ -55,6 +59,7 @@ export const projects: Project[] = [
     categoryFilter: 'UI/UX Design',
     description: 'A digital voting application with web and mobile interfaces.',
     technologies: ['Figma', 'FigJam'],
+    imageUrl: '/images/projects/e-voting/web-evt-cover.png',
   },
 ];
 
